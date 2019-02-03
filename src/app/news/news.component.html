@@ -1,3 +1,15 @@
-<p>
-  news works!
-</p>
+<div class="box" style="background-image: url('../images/wallpaper_2.jpg')" ng-controller="NewsController">
+    <div class="container">
+      <div class="card col-md-4 hover-news" style=" display: inline-flex !important;" ng-repeat="news in news | orderBy: 'timestamp'">
+        <img height="250px" width="100%;" class="card-img-top" src="{{news.img}}" alt="Card image cap">
+        <div class="card-body">
+          <div class="form-border"></div>
+          <h5 class="card-title">{{news.title}}</h5>
+          <div class="form-border"></div>
+          <p class="card-text">{{news.info}}</p>
+          <button class="btn btn-primary" href="">Learn More</button>
+          <p class="card-text"><small class="text-muted">Last updated {{news.timestamp}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>

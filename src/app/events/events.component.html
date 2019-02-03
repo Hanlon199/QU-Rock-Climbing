@@ -1,3 +1,65 @@
-<p>
-  events works!
-</p>
+<div style="background-image: url('../images/wallpaper_2.jpg')">
+    <!-- Cards for Events -->
+    <div class="box">
+    <div class="container card-padding" ng-controller="EventController">
+      <table>
+        <tr>
+          <div>
+            <div class="row">
+            <h3 class="display-6">Event name</h3>
+            <button><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <p>Description</p>
+          </div>
+        </tr>
+      </table>
+      <!-- <div class="row"> -->
+<!--         <div class="col">
+          <div class="card text-center" style="width: 300px;" ng-repeat="event in displayedEvent">
+            <div class="card-body">
+              <h5 class="card-title">Hackathon</h5>
+              <p class="card-text">Day of Programming</p>
+              <p class="card-text"><small class="text-muted">Last updated now</small></p>
+              <input type="button" name="View Event" value="View Event" ng-click="viewEvent(1)" ng-class="{active: classSelected == 1}">
+            </div>
+          </div>
+
+          <div class="card text-center" style="width: 300px;" ng-repeat="event in displayedEvent">
+            <div class="card-body">
+              <h5 class="card-title">Trip to Google</h5>
+              <p class="card-text">Club trip to Google HQ</p>
+              <p class="card-text"><small class="text-muted">Last updated 7 hours ago</small></p>
+              <input type="button" name="View Event" value="View Event" ng-click="viewEvent(2)" ng-class="{active: classSelected == 2}">
+            </div>
+          </div>
+
+          <div class="card text-center" style="width: 300px;" ng-repeat="event in displayedEvent">
+            <div class="card-body">
+              <h5 class="card-title">Graduate School Talk</h5>
+              <p class="card-text">Lecture based talk with Graduate School Visiters</p>
+              <p class="card-text"><small class="text-muted">Last updated 2 weeks ago</small></p>
+              <input type="button" name="View Event" value="View Event" ng-click="viewEvent(3)" ng-class="{active: classSelected == 3}">
+            </div>
+          </div>
+        </div>  --><!-- End of col -->
+
+        <!-- Event Overview section -->
+
+        <!-- <div class="col">
+          <div class="card text-center" id="eventOverview" style="width: 750px; height:590px" ng-repeat="event in displayedEvent">
+            <div class="card-body">
+              <h3>{{event.name}}</h3>
+              <p>{{event.description_lg}}</p>
+              <h6>{{event.location}}</h6>
+              <h6>{{event.date}}</h6>
+              <h6>{{event.time}}</h6>
+              <img src="{{event.image}}">
+            </div>
+          </div> -->
+        <!-- </div> --> <!-- End col -->
+
+      <!-- </div> --> <!-- End row -->
+    </div>
+    <!--End container -->
+  </div>
+  </div> <!-- End background style -->
