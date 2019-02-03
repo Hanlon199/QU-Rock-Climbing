@@ -1,0 +1,10 @@
+.banner img {
+  width: 100%;
+}
+.textHolder{
+  padding-bottom: 30px;
+}
+.buttonHolder{
+  padding-bottom: 40px;
+  text-align: center;
+}
