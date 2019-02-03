@@ -15,6 +15,7 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
 import { ApplyComponent } from './apply/apply.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -23,7 +24,8 @@ const appRoutes:Routes =[
   {path: 'events',component: EventsComponent},
   {path: 'news',component: NewsComponent},
   {path: 'eboard',component: EboardComponent},
-  {path: 'admin',component: AdminComponent}
+  {path: 'admin',component: AdminComponent},
+  {path: 'apply',component: ApplyComponent}
 ];
 
 
@@ -39,11 +41,14 @@ const appRoutes:Routes =[
     EboardComponent,
     LoginModalComponent,
     ApplyComponent,
-    AdminComponent
+    AdminComponent,
+    HomeCarouselComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
