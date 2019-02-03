@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
-  constructor() { }
+  events: any;
+
+  constructor() {
+    this.events = [
+      {'name': 'Climb 1', 'photo': '', 'desc': 'new climb baby', 'register': ''},
+      {'name': 'Climb 2', 'photo': '', 'desc': 'another climb baby', 'register': ''},
+      {'name': 'Climb 3', 'photo': '', 'desc': 'final climb baby', 'register': ''}
+    ];
+  }
 
   ngOnInit() {
   }
