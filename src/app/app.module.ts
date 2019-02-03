@@ -23,7 +23,8 @@ const appRoutes:Routes =[
   {path: 'events',component: EventsComponent},
   {path: 'news',component: NewsComponent},
   {path: 'eboard',component: EboardComponent},
-  {path: 'admin',component: AdminComponent}
+  {path: 'admin',component: AdminComponent},
+  {path: 'apply',component: ApplyComponent}
 ];
 
 
