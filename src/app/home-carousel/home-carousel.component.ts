@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-carousel.component.css']
 })
 export class HomeCarouselComponent implements OnInit {
-  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
+	height: number = 400;
+	width: number = 1920;
+  	images = [1, 2, 3].map((currElement,index) => 'src/app/includes/images/image' + currElement + '.jpg');
   
-  constructor() { }
+  	constructor() { }
 
-  ngOnInit() {
-  }
+  	ngOnInit() {  }
 
 }

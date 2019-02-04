@@ -1,44 +1,23 @@
- <div class="box" style="background-image: url('../images/wallpaper_2.jpg')" ng-controller="indexController">
-    <div class="container" ng-controller="indexController" style="background-color: white;">
+ <div class="box" >
+    <div  style="background-color: white;">
 
       <app-home-carousel></app-home-carousel>
+      <div class="container">
+        <div>
+          <h1 style="text-align: center !important">General Info</h1>
+          <div class="form-border"></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+        </div>
 
-        <div class = row>
-          <div class = "col-sm-7">
-            <div>
-              <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                  <a (click)="selectClass(1)" ng-class="{active: classSelected == 1}" class="nav-link active" >General Info</a>
-                </li>
-                <li class="nav-item">
-                  <a (click)="selectClass(2)" ng-class="{active: classSelected == 2}" class="nav-link" >Current E-Board</a>
-                </li>
-                <li class="nav-item">
-                  <a (click)="selectClass(3)" ng-class="{active: classSelected == 3}" class="nav-link" >Meeting Info</a>
-                </li>
-                <li class="nav-item">
-                  <a (click)="selectClass(4)" ng-class="{active: classSelected == 4}" class="nav-link" >Contacts</a>
-                </li>
-              </ul>
-            </div>
-            <div class="event-overview" ng-repeat="section in displayedArr">
-              <div style="text-align: center;">
-                <h3></h3>
-                <p></p>
-                <div ng-if="classSelected == 2">
-                  <ul>
-                    <li>President: </li>
-                    <li>Vice President: </li>
-                    <li>Treasure: </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class = "col-sm-5">
-            <div id="calendar" data-provide="calendar"></div>
-          </div>
+        <div>
+          <h1 style="text-align: center !important">Meeting Info</h1>
+          <div class="form-border"></div>
+          <ul style="list-style: none">
+            <li><h4>Weekly meetings in CCE: ### at 8:00pm</h4></li>
+            <li><h4>Occasional rock climbing trips to virus.exe</h4></li>
+            <li><h4>Kyle has low T</h4></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
