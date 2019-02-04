@@ -11,9 +11,9 @@ export class EventsComponent implements OnInit {
 
   constructor() {
     this.events = [
-      {'name': 'Climb 1', 'photo': '', 'desc': 'new climb baby', 'register': ''},
-      {'name': 'Climb 2', 'photo': '', 'desc': 'another climb baby', 'register': ''},
-      {'name': 'Climb 3', 'photo': '', 'desc': 'final climb baby', 'register': ''}
+      {'name': 'Climb 1', 'desc': 'new climb baby', 'register': 'Register'},
+      {'name': 'Climb 2', 'desc': 'another climb baby', 'register': 'Register'},
+      {'name': 'Climb 3', 'desc': 'final climb baby', 'register': 'Register'}
     ];
   }
 

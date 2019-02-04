@@ -1,5 +1,17 @@
 <!-- Cards for Events -->
-<div class="card-body" *ngFor="let event of events">
-  {{event.photo}}
-  {{ event.name }}
-</div>
+<div class="card" *ngFor="let event of events">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <h4 style="padding-left: 11px">{{ event.name }}</h4>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <p style="float: left">{{ event.desc }}</p>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary" name="Register" style="width:100px; height:50px; float: right">{{ event.register }}</button>
+        </div>
+      </div>
+    </div>
+  </div>

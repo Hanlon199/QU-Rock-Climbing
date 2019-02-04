@@ -16,6 +16,7 @@ import { ApplyComponent } from './apply/apply.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
+import { EventRegisterModalComponent } from './event-register-modal/event-register-modal.component';
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -42,7 +43,8 @@ const appRoutes:Routes =[
     LoginModalComponent,
     ApplyComponent,
     AdminComponent,
-    HomeCarouselComponent
+    HomeCarouselComponent,
+    EventRegisterModalComponent
   ],
   imports: [
     BrowserModule,
