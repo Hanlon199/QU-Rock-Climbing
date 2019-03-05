@@ -11,7 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './news/news.component';
 import { EboardComponent } from './eboard/eboard.component';
-import { LoginModalComponent } from './login-modal/login-modal.component';
+import { LoginModalComponent, LoginModalContent } from './login-modal/login-modal.component';
 import { ApplyComponent } from './apply/apply.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -41,6 +41,7 @@ const appRoutes:Routes =[
     NewsComponent,
     EboardComponent,
     LoginModalComponent,
+    LoginModalContent,
     ApplyComponent,
     AdminComponent,
     HomeCarouselComponent,
@@ -53,6 +54,7 @@ const appRoutes:Routes =[
     NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginModalContent]
 })
 export class AppModule { }
