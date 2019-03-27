@@ -1,23 +1,33 @@
-<ngb-carousel *ngIf="images">
-  <ng-template ngbSlide>
-    <img [src]="images[0]" alt="Random first slide" height="{{height}}" width="{{width}}">
-    <div class="carousel-caption">
-      <h3>First slide label</h3>
-      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+<mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+  <mdb-carousel-item>
+    <div class="view w-100">
+      <img [src]="images[0]" alt="Random first slide" height="{{height}}" width="{{width}}">
+      <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
     </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <img [src]="images[1]" alt="Random second slide" height="{{height}}" width="{{width}}">
     <div class="carousel-caption">
-      <h3>Second slide label</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <h1 class="h1-responsive">Welcome to QU Rock Climbing</h1>
+      <p>First text</p>
     </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <img [src]="images[2]" alt="Random third slide" height="{{height}}" width="{{width}}">
+  </mdb-carousel-item>
+  <mdb-carousel-item>
+    <div class="view w-100">
+      <img [src]="images[1]" alt="Random second slide" height="{{height}}" width="{{width}}">
+      <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+    </div>
     <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <h1 class="h1-responsive">Pic 2</h1>
+      <p>Secondary text</p>
     </div>
-  </ng-template>
-</ngb-carousel>
+  </mdb-carousel-item>
+  <mdb-carousel-item>
+    <div class="view w-100">
+      <img [src]="images[2]" alt="Random third slide" height="{{height}}" width="{{width}}">
+      <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+    </div>
+    <div class="carousel-caption">
+        <h1 class="h1-responsive">Pic 3</h1>
+      <p>Third text</p>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+

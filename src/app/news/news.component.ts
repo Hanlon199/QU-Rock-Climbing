@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  news: any;
+
+  constructor() { 
+    this.news = [
+      {'title': 'article 1', 'info': 'he climbed whaaaat!', 'link': ''},
+      {'title': 'article 2', 'info': 'Ryan sends his first v9!', 'link': ''},
+      {'title': 'article 3', 'info': 'Kyle still cant climb a v0...', 'link': ''},
+    ];
+  }
 
   ngOnInit() {
   }

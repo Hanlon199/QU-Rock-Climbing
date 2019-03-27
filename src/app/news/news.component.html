@@ -1,14 +1,16 @@
-<div class="box" style="background-image: url('../images/wallpaper_2.jpg')" ng-controller="NewsController">
+<!-- Cards for Events -->
+<div class="card" *ngFor="let new of news">
+  <div class="card-body">
     <div class="container">
-      <div class="card col-md-4 hover-news" style=" display: inline-flex !important;" ng-repeat="news in news | orderBy: 'timestamp'">
-        <img height="250px" width="100%;" class="card-img-top" src="{{news.img}}" alt="Card image cap">
-        <div class="card-body">
-          <div class="form-border"></div>
-          <h5 class="card-title">{{news.title}}</h5>
-          <div class="form-border"></div>
-          <p class="card-text">{{news.info}}</p>
-          <button class="btn btn-primary" href="">Learn More</button>
-          <p class="card-text"><small class="text-muted">Last updated {{news.timestamp}}</small></p>
+      <div class="row">
+        <h4 style="padding-left: 11px">{{ new.title }}</h4>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <p style="float: left">{{ new.info }}</p>
+        </div>
+        <div class="col-sm-4">
+          <button class="btn btn-primary" style="float: right" href=" {{ new.link }}">Learn More</button>
         </div>
       </div>
     </div>
