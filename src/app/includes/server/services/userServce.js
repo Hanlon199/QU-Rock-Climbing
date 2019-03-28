@@ -22,7 +22,7 @@ class UserService{
 	}
 
 	edit(user,db,callback){
-		console.log(ObjectID(user.id))
+		// console.log(ObjectID(user.id))
 		db.collection('members').update(
 		{"_id": ObjectID(user.id)},
 		{
@@ -46,7 +46,7 @@ class UserService{
 	addUser(){
 		let self = this;
 		let user = this.req.body.member;
-		console.log("USER SERVICE ADD: ",  user)
+		// console.log("USER SERVICE ADD: ",  user)
 		try{
 			MongoClient.connect(url, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
@@ -101,7 +101,7 @@ class UserService{
 	editUser(){
 		let self = this;
 		let user = this.req.body.member;
-		console.log("USER SERVICE EDIT: ",  user)
+		// console.log("USER SERVICE EDIT: ",  user)
 		try{
 			MongoClient.connect(url, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

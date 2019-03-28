@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import {User} from './includes/models/user.model';
+import {User} from '../includes/models/user.model';
 import {Subject} from 'rxjs/Subject'
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 @Injectable()
-export class CommonService{
+export class CommonAdminService{
 	public userList: User[];
 	public add_subject = new Subject<String>()
 	constructor(private http:Http){

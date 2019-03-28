@@ -5,11 +5,11 @@ import {Http,Response, Headers, RequestOptions} from '@angular/http';
 import {User} from '../includes/models/user.model';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-test-user',
+  templateUrl: './test-user.component.html',
+  styleUrls: ['./test-user.component.scss']
 })
-export class TestComponent implements OnInit {
+export class TestUserComponent implements OnInit {
 	private user = [];
 	private userList: User[];
 	private editUserList:any = [];
@@ -31,7 +31,7 @@ export class TestComponent implements OnInit {
 			console.log("RES: ", resParsed.data);
 			this.userList = [];
 			resParsed.data.map(e=>{
-				this.userList.push(new User(e._id,e.name,e.belayCertified,e.year,e.position,e.isAdmin));
+				this.userList.push(new User(e._id,e.name,e.year,e.belayCertified,e.position,e.isAdmin));
 			})
 			this.loading = false;
 			// console.log("USER LIST: ", this.userList)
@@ -77,3 +77,4 @@ export class TestComponent implements OnInit {
 
 
 }
+
