@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  images = [1].map((currElement,index) => 'src/app/includes/images/logo.png');
 
   constructor() { }
 

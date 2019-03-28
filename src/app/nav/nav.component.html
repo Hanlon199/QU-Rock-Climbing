@@ -1,27 +1,29 @@
- <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="events">Events </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="news">News</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="eboard">E Board</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="apply">Apply for Membership</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Login Button for Modal -->
-      <div class="login-button">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Admin Login</button>
-      </div>
-    </nav>
-  </div> <!-- End Nav -->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark light-blue darken-4 ">
+    <mdb-navbar-brand>
+        <a class="navbar-brand" href="home"><img [src]="images[0]" alt="nav logo" height="55em" width="65em"></a>
+    </mdb-navbar-brand>
+    <links>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-lg-0">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['home']"  href="home">Home</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['events']" href="events">Events</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['news']" href="news">News</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['eboard']" href="eboard">E-Board</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['apply']" href="apply">Apply for Membership</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['login']" href="login">Admin Login</a>
+                </li>
+            </ul>
+        </div>
+    </links>
+</mdb-navbar>
