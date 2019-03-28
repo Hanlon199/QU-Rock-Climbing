@@ -1,8 +1,11 @@
+//imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
+//components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +20,11 @@ import { AdminComponent } from './admin/admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
 import { EventRegisterModalComponent } from './event-register-modal/event-register-modal.component';
+import { TestComponent } from './test/test.component';
+
+
+//services
+import {CommonService} from './common.service';
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -26,7 +34,8 @@ const appRoutes:Routes =[
   {path: 'news',component: NewsComponent},
   {path: 'eboard',component: EboardComponent},
   {path: 'admin',component: AdminComponent},
-  {path: 'apply',component: ApplyComponent}
+  {path: 'apply',component: ApplyComponent},
+  {path: 'test',component: TestComponent}
 ];
 
 
@@ -44,15 +53,17 @@ const appRoutes:Routes =[
     ApplyComponent,
     AdminComponent,
     HomeCarouselComponent,
-    EventRegisterModalComponent
+    EventRegisterModalComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     NgbModule
   ],
-  providers: [],
+  providers: [CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

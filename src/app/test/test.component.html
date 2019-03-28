@@ -1,0 +1,86 @@
+<form #userForm="ngForm" (ngSubmit)="addUser()" novalidate>
+	<table border="1" class="table table-bordered">
+		<tr>
+			<td>Name</td>
+			<td>
+				<!-- <input name="id" type="hidden" [(ngModel)]="s"> -->
+				<input name="name" type="text" [(ngModel)]="user.name" required>
+			</td>
+		</tr>
+
+<!-- 		<tr>
+			<td>Expected Graduation Year</td>
+			<td><input name="address" type="number" [(ngModel)]="user.year" required></td>
+		</tr> -->
+
+		<tr>
+			<td>Belay Certified? (yes or no)</td>
+			<td><input name="address" type="boolean" [(ngModel)]="user.belayCertified" required></td>
+		</tr>
+
+		<tr>
+			<td>Position</td>
+			<td><input name="address" type="text" [(ngModel)]="user.position" required></td>
+		</tr>
+
+		<tr>
+			<td>Is Admin (yes or no)</td>
+			<td><input name="address" type="boolean" [(ngModel)]="user.isAdmin" required></td>
+		</tr>
+
+		<tr>
+			<td colspan="2">
+				<input type="submit" name="">
+			</td>
+		</tr>
+	</table>
+</form>
+
+<div class="row" *ngIf="loading">
+	<img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+</div>
+<div class="container">
+	<table border="1" class="table table-bordered" *ngIf="!loading">
+		<tr>
+			<td>Id</td>
+			<td>name</td>
+			<td>year</td>
+			<td>belayCertified</td>
+			<td>position</td>
+			<td>isAdmin</td>
+			<td>Action</td>
+		</tr>
+
+		<tr *ngFor="let data of userList; let ind = index" >
+			<td>{{ind+1}}</td>
+			<td [hidden]="edit == ind">{{data.name}}</td>
+			<td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editUserList.name" value="{{editUserList.name}}"></td>
+			<td [hidden]="edit == ind">{{data.year}}</td>
+			<td [hidden]="edit != ind"><input type="number" name="year" [(ngModel)]="editUserList.year" value="{{editUserList.year}}"></td>
+			<td [hidden]="edit == ind">{{data.belayCertified}}</td>
+			<td [hidden]="edit != ind"><input type="text" name="belayCertified" [(ngModel)]= "editUserList.belayCertified" value="{{editUserList.belayCertified}}"></td>
+			<td [hidden]="edit == ind">{{data.position}}</td>
+			<td [hidden]="edit != ind"><input type="text" name="position" [(ngModel)]="editUserList.position" value="{{editUserList.position}}"></td>
+			<td [hidden]="edit == ind">{{data.isAdmin}}</td>
+			<td [hidden]="edit != ind"><input type="text" name="isAdmin" [(ngModel)]="editUserList.isAdmin" value="{{editUserList.isAdmin}}"></td>
+			<td [hidden]="edit == ind">
+				<a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
+				<a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
+			</td>
+			<td [hidden]="edit != ind">
+				<a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
+				<a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
+			</td>
+		</tr>
+		<!-- <tr *ngFor="let data of editUserList; let ind = index"> 
+			<td>{{ind+1}}</td>
+			<td><input type="text" name="name" [(ngModel)]="editUser.name" value="{{data.name}}"></td>
+			<td><input type="text" name="belayCertified" [(ngModel)]="editUser.belayCertified" value="{{data.belayCertified}}"></td>
+			<td><input type="text" name="position" [(ngModel)]="editUser.position" value="{{data.position}}"></td>
+			<td><input type="text" name="isAdmin" [(ngModel)]="editUser.isAdmin" value="{{data.isAdmin}}"></td>
+			<td><a (click)="edit(data._id)" style="color: blueviolet">Edit</a></td>
+			<td><a (click)="delete(data._id)" style="color: red">Delete</a></td>
+		</tr> -->
+			<!-- <td>{{data.year}}</td> -->
+	</table>
+</div>
