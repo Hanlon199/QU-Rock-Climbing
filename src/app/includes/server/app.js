@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userService = require('./services/userServce')
+const userService = require('./services/userService')
+const eventService = require('./services/eventService')
 const app = express();
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -19,6 +20,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 // }, {versionKey:false});
 // var model = mongoose.model('users', testSchema, 'users');
 
+////////////////////////////////////////////////
+// Users
+////////////////////////////////////////////////
 app.post("/api/addUser", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.addUser();
@@ -38,6 +42,33 @@ app.get("/api/getUser", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.getUser();
 });
+
+////////////////////////////////////////////////
+// Events
+////////////////////////////////////////////////
+app.post("/api/addEvent", (req,res)=>{
+	let eventServiceObj = new eventService(req,res);
+	eventServiceObj.addEvent();
+});
+
+app.post("/api/removeEvent", (req,res)=>{
+	let eventServiceObj = new eventService(req,res);
+	eventServiceObj.removeEvent();
+});
+
+app.post("/api/editEvent", (req,res)=>{
+	let eventServiceObj = new eventService(req,res);
+	eventServiceObj.editEvent();
+});
+
+app.get("/api/getEvent", (req,res)=>{
+	let eventServiceObj = new eventService(req,res);
+	eventServiceObj.getEvent();
+});
+
+////////////////////////////////////////////////
+// News
+////////////////////////////////////////////////
 
 app.listen(3000, ()=>{
 	console.log('Test app listening on port 3000');

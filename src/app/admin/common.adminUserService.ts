@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 @Injectable()
-export class CommonAdminService{
+export class CommonUserService{
 	public userList: User[];
 	public add_subject = new Subject<String>()
 	constructor(private http:Http){

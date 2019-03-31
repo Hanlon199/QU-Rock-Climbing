@@ -1,7 +1,9 @@
-export class event{
+export class Event{
 	constructor(
-		public title:string,
+		public id:string,
+		public name:string,
 		public description:string,
-		public eventid:string
+		public location:string,
+		public time:string
 	){}
 }

@@ -24,7 +24,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 //services
 import {CommonService} from './common.service';
-import {CommonAdminService} from './admin/common.adminService'
+import {CommonUserService} from './admin/common.adminUserService'
+import {CommonEventService} from './admin/common.adminEventService'
+import {CommonNewsService} from './admin/common.adminNewsService'
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -66,7 +68,7 @@ const appRoutes:Routes =[
     MDBBootstrapModule.forRoot(),
     NgbModule
   ],
-  providers: [CommonService,CommonAdminService],
+  providers: [CommonService,CommonUserService,CommonEventService, CommonNewsService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
