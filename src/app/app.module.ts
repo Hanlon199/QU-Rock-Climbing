@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { EventsComponent } from './events/events.component';
-import { EventRegisterModalComponent } from './event-register-modal/event-register-modal.component';
+import { EventRegisterModalComponent, EventRegisterModalContent } from './event-register-modal/event-register-modal.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './news/news.component';
 import { EboardComponent } from './eboard/eboard.component';
@@ -58,6 +58,7 @@ const appRoutes:Routes =[
     LoginComponent,
     TestUserComponent,
     EventRegisterModalComponent,
+    EventRegisterModalContent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +71,7 @@ const appRoutes:Routes =[
   ],
   providers: [CommonService,CommonUserService,CommonEventService, CommonNewsService],
   bootstrap: [AppComponent],
+  entryComponents: [EventRegisterModalContent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
