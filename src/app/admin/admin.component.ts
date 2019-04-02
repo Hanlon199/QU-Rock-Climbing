@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable  } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import {CommonUserService} from './common.adminUserService';
 import {CommonEventService} from './common.adminEventService';
@@ -7,6 +7,11 @@ import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
 import {News} from '../includes/models/news.model';
 import {Eboard} from '../includes/models/eboard.model';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
+
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
   selector: 'admin_user',
@@ -55,7 +60,7 @@ export class AdminComponent implements OnInit {
 					console.log("RES: ", resParsed.data);
 					this.userList = [];
 					resParsed.data.map(e=>{
-						this.userList.push(new User(e._id,e.name,e.belayCertified,e.year,e.position,e.isAdmin));
+						this.userList.push(new User(e._id,e.name,e.year,e.belayCertified,e.position,e.isAdmin));
 					})
 					this.loading = false;
 					// console.log("USER LIST: ", this.userList)
@@ -176,4 +181,41 @@ export class AdminComponent implements OnInit {
 		console.log("TAB: " , this.currentTab)
 	}
 
-}
+	export(){
+		
+		let data = [];
+		let name = '';
+		let today = new Date();
+		let todayParsed = String(today.getMonth()).padStart(2,'0') + '/' + String(today.getDate()).padStart(2,'0') + '/' + String(today.getFullYear());
+
+		switch (this.currentTab) {
+			case "members":
+				name = 'members_export_'
+				data = this.userList;
+				break;
+			case "events":
+				name = 'events_export_'
+				data = this.eventsList;
+				break;
+			case "news":
+				name = 'news_export_'
+				data = this.newsList;
+				break;
+			case "eboard":
+				name = 'eboard_export_'
+				data = this.eboardList;
+				break;
+			default:
+				break;
+		}
+
+		name = name + todayParsed + '.xlsx';
+
+		const workBook = XLSX.utils.book_new(); // create a new blank book
+    	const workSheet = XLSX.utils.json_to_sheet(data);
+    	XLSX.utils.book_append_sheet(workBook, workSheet, 'data'); // add the worksheet to the book
+    	XLSX.writeFile(workBook, name);
+		// this.exportAsExcelFile(data,name);
+	}
+
+}	
