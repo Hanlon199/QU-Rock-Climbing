@@ -31,7 +31,7 @@ export class TestUserComponent implements OnInit {
 			console.log("RES: ", resParsed.data);
 			this.userList = [];
 			resParsed.data.map(e=>{
-				this.userList.push(new User(e._id,e.name,e.year,e.belayCertified,e.position,e.isAdmin));
+				this.userList.push(new User(e._id,e.name,e.email,e.year,e.belayCertified,e.position,e.isAdmin));
 			})
 			this.loading = false;
 			// console.log("USER LIST: ", this.userList)
