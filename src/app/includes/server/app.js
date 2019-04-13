@@ -23,22 +23,22 @@ app.use(bodyParser.urlencoded({extended:false}));
 ////////////////////////////////////////////////
 // Users
 ////////////////////////////////////////////////
-app.post("/api/addUser", (req,res)=>{
+app.put("/api/User", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.addUser();
 });
 
-app.post("/api/removeUser", (req,res)=>{
+app.delete("/api/User/:id", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.removeUser();
 });
 
-app.post("/api/editUser", (req,res)=>{
+app.post("/api/User", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.editUser();
 });
 
-app.get("/api/getUser", (req,res)=>{
+app.get("/api/User", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.getUser();
 });
@@ -46,22 +46,22 @@ app.get("/api/getUser", (req,res)=>{
 ////////////////////////////////////////////////
 // Events
 ////////////////////////////////////////////////
-app.post("/api/addEvent", (req,res)=>{
+app.put("/api/Event", (req,res)=>{
 	let eventServiceObj = new eventService(req,res);
 	eventServiceObj.addEvent();
 });
 
-app.post("/api/removeEvent", (req,res)=>{
+app.delete("/api/Event", (req,res)=>{
 	let eventServiceObj = new eventService(req,res);
 	eventServiceObj.removeEvent();
 });
 
-app.post("/api/editEvent", (req,res)=>{
+app.post("/api/Event", (req,res)=>{
 	let eventServiceObj = new eventService(req,res);
 	eventServiceObj.editEvent();
 });
 
-app.get("/api/getEvent", (req,res)=>{
+app.get("/api/Event", (req,res)=>{
 	let eventServiceObj = new eventService(req,res);
 	eventServiceObj.getEvent();
 });

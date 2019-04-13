@@ -17,10 +17,11 @@ export class CommonUserService{
 
 	addUser(user){
 		// console.log("COMMON USER ADD: ", user)
-		return this.http.post('/api/addUser', 
+		return this.http.put('/api/User', 
 		{"member":
 			{
 			"name":user.name,
+			"email":user.email,
 			"year":user.year,
 			"belayCertified":user.belayCertified,
 			"position": user.position,
@@ -30,21 +31,22 @@ export class CommonUserService{
 	}
 
 	removeUser(memberID){
-		return this.http.post('/api/removeUser',{id:memberID});
+		return this.http.delete('/api/User/' + memberID);
 	}
 
 	getUser(){
-		return this.http.get('/api/getUser', {})
+		return this.http.get('/api/User', {})
 	}
 
 	editUser(user){
 		// console.log("COMMON SERVICE EDIT: " , user)
-		return this.http.post('api/editUser', 
+		return this.http.post('/api/User', 
 		{
 		"member":
 			{
 			"id":user.id,
 			"name":user.name,
+			"email":user.email,
 			"year":user.year,
 			"belayCertified":user.belayCertified,
 			"position": user.position,

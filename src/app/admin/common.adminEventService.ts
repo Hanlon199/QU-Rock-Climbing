@@ -16,7 +16,7 @@ export class CommonEventService{
 	}
 
 	addEvent(event){
-		return this.http.post('/api/addEvent', 
+		return this.http.put('/api/Event', 
 		{"event":
 			{
 			"name":event.name,
@@ -28,15 +28,15 @@ export class CommonEventService{
 	}
 
 	removeEvent(memberID){
-		return this.http.post('/api/removeEvent',{id:memberID});
+		return this.http.delete('/api/Event/'+ memberID);
 	}
 
 	getEvent(){
-		return this.http.get('/api/getEvent', {})
+		return this.http.get('/api/Event', {})
 	}
 
 	editEvent(event){
-		return this.http.post('/api/editEvent', 
+		return this.http.post('/api/Event', 
 		{"event":
 			{
 			"id":event.id,

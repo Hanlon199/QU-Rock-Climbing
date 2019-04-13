@@ -15,7 +15,8 @@ class UserService{
 			"year" : user.year,
 			"belayCertified" : user.belayCertified,
 			"position" : user.position,
-			"isAdmin" : user.isAdmin
+			"isAdmin" : user.isAdmin,
+			"email" : user.email
 		}, function(){
 			callback();
 		})
@@ -31,7 +32,8 @@ class UserService{
 				"year" : user.year,
 				"belayCertified" : user.belayCertified,
 				"position" : user.position,
-				"isAdmin" : user.isAdmin
+				"isAdmin" : user.isAdmin,
+				"email" : user.email
 			}
 		}, function(){
 			callback();
@@ -39,7 +41,7 @@ class UserService{
 	}
 
 	remove(id, db, callback){
-		db.collection('members').remove({"_id":ObjectID(id)});
+		db.collection('members').deleteOne({"_id":ObjectID(id)});
 	}
 
 	//
@@ -48,7 +50,7 @@ class UserService{
 		let user = this.req.body.member;
 		// console.log("USER SERVICE ADD: ",  user)
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				self.insert(user,db,function(){
@@ -70,7 +72,7 @@ class UserService{
 	getUser(){
 		let self = this;
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				let members = [];
@@ -103,7 +105,7 @@ class UserService{
 		let user = this.req.body.member;
 		// console.log("USER SERVICE EDIT: ",  user)
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				self.edit(user,db,function(){
@@ -126,9 +128,9 @@ class UserService{
 	//
 	removeUser(){
 		let self = this;
-		let id = this.req.body.id;
+		let id = this.req.params.id;
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				self.remove(id,db,function(){

@@ -124,7 +124,7 @@ class EventsService{
 	//
 	removeEvent(){
 		let self = this;
-		let id = this.req.body.id;
+		let id = this.req.params.id;
 		try{
 			MongoClient.connect(url, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

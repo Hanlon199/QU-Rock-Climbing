@@ -13,10 +13,12 @@
 					<table border="1" class="table table-bordered">
 						<tr>
 							<td>Name</td>
-							<td>
-								<!-- <input name="id" type="hidden" [(ngModel)]="s"> -->
-								<input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="user.name" required>
-							</td>
+							<td><input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="user.name" required></td>
+						</tr>
+
+						<tr>
+							<td>Email</td>
+							<td><input class="form-control" style="width: 250px;" name="email" type="text" [(ngModel)]="user.email" required></td>
 						</tr>
 
 						<tr>
@@ -55,6 +57,7 @@
 						<tr>
 							<td>Id</td>
 							<td>name</td>
+							<td>email</td>
 							<td>year</td>
 							<td>belayCertified</td>
 							<td>position</td>
@@ -65,7 +68,8 @@
 						<tr *ngFor="let data of userList; let ind = index" >
 							<td>{{ind+1}}</td>
 							<td [hidden]="edit == ind">{{data.name}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name" value="{{editList.name}}"></td>
+							<td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name" value="{{editList.name}}"></td><td [hidden]="edit == ind">{{data.email}}</td>
+							<td [hidden]="edit != ind"><input type="text" name="email" [(ngModel)]="editList.email" value="{{editList.email}}"></td>
 							<td [hidden]="edit == ind">{{data.year}}</td>
 							<td [hidden]="edit != ind"><input type="number" name="year" [(ngModel)]="editList.year" value="{{editList.year}}"></td>
 							<td [hidden]="edit == ind">{{data.belayCertified}}</td>

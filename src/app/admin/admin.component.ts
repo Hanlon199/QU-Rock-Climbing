@@ -57,10 +57,10 @@ export class AdminComponent implements OnInit {
 			case "members":
 				this.userService.getUser().subscribe((res:any) =>{	
 					let resParsed = JSON.parse(res._body);
-					console.log("RES: ", resParsed.data);
+					// console.log("RES: ", resParsed.data);
 					this.userList = [];
 					resParsed.data.map(e=>{
-						this.userList.push(new User(e._id,e.name,e.year,e.belayCertified,e.position,e.isAdmin));
+						this.userList.push(new User(e._id,e.name,e.email,e.year,e.belayCertified,e.position,e.isAdmin));
 					})
 					this.loading = false;
 					// console.log("USER LIST: ", this.userList)
@@ -69,13 +69,13 @@ export class AdminComponent implements OnInit {
 			case "events":
 				this.eventService.getEvent().subscribe((res:any) =>{	
 					let resParsed = JSON.parse(res._body);
-					console.log("RES: ", resParsed.data);
+					// console.log("RES: ", resParsed.data);
 					this.eventsList = [];
 					resParsed.data.map(e=>{
 						this.eventsList.push(new Event(e._id,e.name,e.description,e.location,e.time));
 					})
 					this.loading = false;
-					console.log("EVENT LIST: ", this.eventsList)
+					// console.log("EVENT LIST: ", this.eventsList)
 				})
 				break;
 			
