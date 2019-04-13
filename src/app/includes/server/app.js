@@ -51,7 +51,7 @@ app.put("/api/Event", (req,res)=>{
 	eventServiceObj.addEvent();
 });
 
-app.delete("/api/Event", (req,res)=>{
+app.delete("/api/Event/:id", (req,res)=>{
 	let eventServiceObj = new eventService(req,res);
 	eventServiceObj.removeEvent();
 });
