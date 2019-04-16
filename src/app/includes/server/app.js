@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 ////////////////////////////////////////////////
 // Users
 ////////////////////////////////////////////////
-app.put("/api/User", (req,res)=>{
+app.post("/api/User", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.addUser();
 });
@@ -33,7 +33,7 @@ app.delete("/api/User/:id", (req,res)=>{
 	userServiceObj.removeUser();
 });
 
-app.post("/api/User", (req,res)=>{
+app.put("/api/User", (req,res)=>{
 	let userServiceObj = new userService(req,res);
 	userServiceObj.editUser();
 });
