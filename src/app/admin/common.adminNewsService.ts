@@ -15,34 +15,33 @@ export class CommonNewsService{
 		this.newsList = [];
 	}
 
-	addNews(event){
-		return this.http.post('/api/addEvent', 
+	addNews(news){
+		return this.http.post('/api/News', 
 		{"news":
 			{
-			"name":event.name,
-			"description":event.description,
-			"link":event.location,
+			"name":news.name,
+			"description":news.description,
+			"link":news.location
 			}
 		});
 	}
 
-	removeEvent(memberID){
-		return this.http.post('/api/removeEvent',{id:memberID});
+	removeNews(newsID){
+		return this.http.delete('/api/News/' + newsID);
 	}
 
-	getEvent(){
-		return this.http.get('/api/getEvent', {})
+	getNews(){
+		return this.http.get('/api/News', {})
 	}
 
-	editEvent(event){
-		return this.http.post('/api/editEvent', 
+	editNews(news){
+		return this.http.put('/api/News', 
 		{"event":
 			{
-			"id":event.id,
-			"name":event.name,
-			"description":event.description,
-			"location":event.location,
-			"time": event.time
+			"id":news.id,
+			"name":news.name,
+			"description":news.description,
+			"link": news.link
 			}
 		});
 	}

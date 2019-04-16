@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userService = require('./services/userService')
 const eventService = require('./services/eventService')
+const newsService = require('./services/newsService');
 const app = express();
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -68,6 +69,29 @@ app.get("/api/Event", (req,res)=>{
 
 ////////////////////////////////////////////////
 // News
+////////////////////////////////////////////////
+app.put("/api/News", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.editNews();
+});
+
+app.delete("/api/News/:id", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.removeNews();
+});
+
+app.post("/api/News", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.addNews();
+});
+
+app.get("/api/News", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.getNews();
+});
+
+////////////////////////////////////////////////
+// Eboard
 ////////////////////////////////////////////////
 
 app.listen(3000, ()=>{

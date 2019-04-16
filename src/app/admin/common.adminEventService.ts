@@ -27,8 +27,8 @@ export class CommonEventService{
 		});
 	}
 
-	removeEvent(memberID){
-		return this.http.delete('/api/Event/'+ memberID);
+	removeEvent(eventID){
+		return this.http.delete('/api/Event/'+ eventID);
 	}
 
 	getEvent(){
