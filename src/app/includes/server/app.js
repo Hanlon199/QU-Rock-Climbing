@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const userService = require('./services/userService')
 const eventService = require('./services/eventService')
 const newsService = require('./services/newsService');
+const eboardService = require('./services/eboardService');
 const app = express();
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -93,7 +94,27 @@ app.get("/api/News", (req, res) => {
 ////////////////////////////////////////////////
 // Eboard
 ////////////////////////////////////////////////
+app.put("/api/Eboard", (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.editEboard();
+});
 
+app.delete('/api/Eboard/:id', (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.removeEboard();
+});
+
+app.post('/api/Eboard', (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.addEboard();
+});
+
+app.get('/api/Eboard', (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.getEboard();
+});
+
+/// LISTEN TO MEEEE GOOOOO
 app.listen(3000, ()=>{
 	console.log('Test app listening on port 3000');
 })

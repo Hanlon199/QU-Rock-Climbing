@@ -284,15 +284,64 @@
     </ngb-tab>
 
 
+    <!--  
+	  /////////////////////
+	  EBOARD
+	  /////////////////////
+	  -->
     <ngb-tab>
       <ng-template ngbTabTitle>
-        <div (click)="changeTab('eboard')">E-Board</div>
+        <div (click)="changeTab('eboard')">Eboard</div>
       </ng-template>
       <ng-template ngbTabContent>
         <div>
+          <form #userForm="ngForm" (ngSubmit)="add()" novalidate>
+            <table border="1" class="table table-bordered">
+              <tr>
+                <td>Photo</td>
+                <td>
+                  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
+                    required>
+                </td>
+              </tr>
 
+              <tr>
+                <td colspan="2">
+                  <input class="btn btn-success" type="submit" name="">
+                </td>
+              </tr>
+            </table>
+          </form>
+
+          <div class="row" *ngIf="loading">
+            <img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+          </div>
+          <div class="container">
+            <table border="1" class="table table-bordered" *ngIf="!loading">
+              <tr>
+                <td>Id</td>
+                <td>Photo</td>
+              </tr>
+
+              <tr *ngFor="let data of newList; let ind = index">
+                <td>{{ind+1}}</td>
+                <td [hidden]="edit == ind">{{data.photo}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.photo"
+                    value="{{editList.name}}"></td>
+                <td [hidden]="edit == ind">
+                  <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
+                  <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
+                </td>
+                <td [hidden]="edit != ind">
+                  <a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
+                  <a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </ng-template>
     </ngb-tab>
+
   </ngb-tabset>
 </div>
