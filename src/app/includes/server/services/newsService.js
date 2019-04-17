@@ -92,12 +92,13 @@ class NewsService {
 
     editNews(){
 		let self = this;
-		let event = this.req.body.news;
+        let news = this.req.body.news;
+        console.log("Daddy punish me",news)
 		try{
 			MongoClient.connect(url, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				self.edit(event,db,function(){
+				self.edit(news,db,function(){
 					return self.res.status(200).json({
 						status:"success"
 					})

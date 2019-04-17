@@ -11,7 +11,7 @@ class EboardService{
 
 	insert(user, db, callback){
 		db.collection('eboard').insertOne({
-			"photo": user.image
+			"photo" : user.photo
 		}, function(){
 			callback();
 		})
@@ -22,7 +22,7 @@ class EboardService{
 		{"_id": ObjectID(user.id)},
 		{
 			$set:{
-				"photo": user.image
+				"photo": user.photo
 			}
 		}, function(){
 			callback();
@@ -37,7 +37,6 @@ class EboardService{
 	addEboard(){
 		let self = this;
 		let user = this.req.body.member;
-		// console.log("USER SERVICE ADD: ",  user)
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
@@ -92,7 +91,8 @@ class EboardService{
 	editEboard(){
 		let self = this;
 		let user = this.req.body.member;
-		// console.log("USER SERVICE EDIT: ",  user)
+		console.log("Daddy is thiccc",user);
+		// console.log("USER SERVICE, EDIT: ",  user)
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

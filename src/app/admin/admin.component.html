@@ -257,7 +257,7 @@
                 <td>Link</td>
               </tr>
 
-              <tr *ngFor="let data of newList; let ind = index">
+              <tr *ngFor="let data of newsList; let ind = index">
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.name}}</td>
                 <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
@@ -323,7 +323,7 @@
                 <td>Photo</td>
               </tr>
 
-              <tr *ngFor="let data of newList; let ind = index">
+              <tr *ngFor="let data of eboardList; let ind = index">
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.photo}}</td>
                 <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.photo"
