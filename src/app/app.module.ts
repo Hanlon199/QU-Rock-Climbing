@@ -27,6 +27,8 @@ import {CommonService} from './common.service';
 import {CommonUserService} from './admin/common.adminUserService'
 import {CommonEventService} from './admin/common.adminEventService'
 import {CommonNewsService} from './admin/common.adminNewsService'
+import {CommonAuthService} from './login/common.loginAuthService'
+
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -69,7 +71,7 @@ const appRoutes:Routes =[
     MDBBootstrapModule.forRoot(),
     NgbModule
   ],
-  providers: [CommonService,CommonUserService,CommonEventService, CommonNewsService],
+  providers: [CommonService,CommonUserService,CommonEventService, CommonNewsService,CommonAuthService],
   bootstrap: [AppComponent],
   entryComponents: [EventRegisterModalContent],
   schemas: [ NO_ERRORS_SCHEMA ]

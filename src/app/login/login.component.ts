@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as jwt from 'jsonwebtoken';
 import { decode } from 'punycode';
+import {CommonAuthService} from './common.loginAuthService';
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import { decode } from 'punycode';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private authSerivce: CommonAuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,11 +25,10 @@ export class LoginComponent implements OnInit {
     // if (username == 'qurockclimbing@gmail.com' && password == 'sendsonly203') {
     //   this.router.navigate(['admin']);
     // }
-    var token = jwt.sign({ username: e.target.elements[0].value, password: e.target.elements[1].value }, 'shhhhh');
+    var token = jwt.sign({ username: e.target.elements[0].value, password: e.target.elements[1].value }, '8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb');
     console.log(token);
     var decoded = jwt.decode(token);
-
-    localStorage.setItem("userInfo", token);
   }
+  
 
 }
