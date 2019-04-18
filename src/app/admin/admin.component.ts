@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Injectable  } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
+import { Component, OnInit, Input, Injectable  } from '../../../node_modules/@angular/core';
+import { FormGroup, FormControl, Validators, FormsModule } from '../../../node_modules/@angular/forms';
 import {CommonUserService} from './common.adminUserService';
 import {CommonEventService} from './common.adminEventService';
 import {CommonNewsService} from './common.adminNewsService';
 import {CommonEboardService} from './common.adminEboardService';
-import {Http,Response, Headers, RequestOptions} from '@angular/http';
+import {Http,Response, Headers, RequestOptions} from '../../../node_modules/@angular/http';
 import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
 import {News} from '../includes/models/news.model';
@@ -97,7 +97,7 @@ export class AdminComponent implements OnInit {
 					let resParsed = JSON.parse(res._body);
 					this.eboardList = [];
 					resParsed.data.map(e=>{
-						this.eboardList.push(new Eboard(e._id,e.photo));
+						this.eboardList.push(new Eboard(e._id,e.photo, e.description, e.username, e.password));
 					})
 					this.loading = false;
 				})
