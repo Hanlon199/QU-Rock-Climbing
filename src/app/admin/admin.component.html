@@ -304,6 +304,13 @@
                     required>
                 </td>
               </tr>
+              <tr>
+                <td>Description</td>
+                <td>
+                  <input class="form-control" style="width: 250px;" name="name" type="text"
+                    [(ngModel)]="eboard.description" required>
+                </td>
+              </tr>
 
               <tr>
                 <td colspan="2">
@@ -321,13 +328,17 @@
               <tr>
                 <td>Id</td>
                 <td>Photo</td>
+                <td>Description</td>
               </tr>
 
               <tr *ngFor="let data of eboardList; let ind = index">
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.photo}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.photo"
-                    value="{{editList.name}}"></td>
+                <td [hidden]="edit != ind"><input type="text" name="photo" [(ngModel)]="editList.photo"
+                    value="{{editList.photo}}"></td>
+                <td [hidden]="edit == ind">{{data.description}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                    value="{{editList.description}}"></td>
                 <td [hidden]="edit == ind">
                   <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
                   <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>

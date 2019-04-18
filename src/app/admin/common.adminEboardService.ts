@@ -42,7 +42,7 @@ export class CommonEboardService{
 			{
 			"id":user.id,
 			"photo": user.photo,
-			"desctiption": user.description
+			"description": user.description
 			}
 		});
 	}
