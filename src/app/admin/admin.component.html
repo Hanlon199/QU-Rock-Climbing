@@ -1,196 +1,347 @@
 <div class="container" style="margin-top: 20px;">
-	<div class="row" style="border-bottom: 1px solid black; margin-bottom: 5px;">
-		<button class="btn btn-small btn-success" (click)="export()">Export Current to Excel <i class="fas fa-file-excel"></i></button>
-	</div>
-	<ngb-tabset>
-	  <ngb-tab>
-	  	<ng-template ngbTabTitle>
-              <div (click)="changeTab('members')">Members</div>
-        </ng-template>
-	    <ng-template ngbTabContent>
-	      <div>
-	      		<form #userForm="ngForm" (ngSubmit)="add()" novalidate>
-					<table border="1" class="table table-bordered">
-						<tr>
-							<td>Name</td>
-							<td><input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="user.name" required></td>
-						</tr>
+  <div class="row" style="border-bottom: 1px solid black; margin-bottom: 5px;">
+    <button class="btn btn-small btn-success" (click)="export()">Export Current to Excel <i
+        class="fas fa-file-excel"></i></button>
+  </div>
 
-						<tr>
-							<td>Email</td>
-							<td><input class="form-control" style="width: 250px;" name="email" type="text" [(ngModel)]="user.email" required></td>
-						</tr>
+  <!--  
+	/////////////////////
+	MEMBERS
+	/////////////////////
+	-->
+  <ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="changeTab('members')">Members</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div>
+          <form #userForm="ngForm" (ngSubmit)="add()" novalidate>
+            <table border="1" class="table table-bordered">
+              <tr>
+                <td>Name</td>
+                <td><input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="user.name"
+                    required></td>
+              </tr>
 
-						<tr>
-							<td>Expected Graduation Year</td>
-							<td><input class="form-control" style="width: 250px;" name="year" type="number" [(ngModel)]="user.year" required></td>
-						</tr>
+              <tr>
+                <td>Email</td>
+                <td><input class="form-control" style="width: 250px;" name="email" type="text" [(ngModel)]="user.email"
+                    required></td>
+              </tr>
 
-						<tr>
-							<td>Belay Certified? (yes or no)</td>
-							<td><input class="form-control" style="width: 250px;" name="address" type="boolean" [(ngModel)]="user.belayCertified" required></td>
-						</tr>
+              <tr>
+                <td>Expected Graduation Year</td>
+                <td><input class="form-control" style="width: 250px;" name="year" type="number" [(ngModel)]="user.year"
+                    required></td>
+              </tr>
 
-						<tr>
-							<td>Position</td>
-							<td><input class="form-control" style="width: 250px;" name="address" type="text" [(ngModel)]="user.position" required></td>
-						</tr>
+              <tr>
+                <td>Belay Certified? (yes or no)</td>
+                <td><input class="form-control" style="width: 250px;" name="address" type="boolean"
+                    [(ngModel)]="user.belayCertified" required></td>
+              </tr>
 
-						<tr>
-							<td>Is Admin (yes or no)</td>
-							<td><input class="form-control" style="width: 250px;" name="address" type="boolean" [(ngModel)]="user.isAdmin" required></td>
-						</tr>
+              <tr>
+                <td>Position</td>
+                <td><input class="form-control" style="width: 250px;" name="address" type="text"
+                    [(ngModel)]="user.position" required></td>
+              </tr>
 
-						<tr>
-							<td colspan="2">
-								<input class="btn btn-success" type="submit" name="">
-							</td>
-						</tr>
-					</table>
-				</form>
+              <tr>
+                <td>Is Admin (yes or no)</td>
+                <td><input class="form-control" style="width: 250px;" name="address" type="boolean"
+                    [(ngModel)]="user.isAdmin" required></td>
+              </tr>
 
-				<div class="row" *ngIf="loading">
-					<img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
-				</div>
-				<div class="container">
-					<table border="1" class="table table-bordered" *ngIf="!loading">
-						<tr>
-							<td>Id</td>
-							<td>name</td>
-							<td>email</td>
-							<td>year</td>
-							<td>belayCertified</td>
-							<td>position</td>
-							<td>isAdmin</td>
-							<td>Action</td>
-						</tr>
+              <tr>
+                <td colspan="2">
+                  <input class="btn btn-success" type="submit" name="">
+                </td>
+              </tr>
+            </table>
+          </form>
 
-						<tr *ngFor="let data of userList; let ind = index" >
-							<td>{{ind+1}}</td>
-							<td [hidden]="edit == ind">{{data.name}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name" value="{{editList.name}}"></td><td [hidden]="edit == ind">{{data.email}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="email" [(ngModel)]="editList.email" value="{{editList.email}}"></td>
-							<td [hidden]="edit == ind">{{data.year}}</td>
-							<td [hidden]="edit != ind"><input type="number" name="year" [(ngModel)]="editList.year" value="{{editList.year}}"></td>
-							<td [hidden]="edit == ind">{{data.belayCertified}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="belayCertified" [(ngModel)]= "editList.belayCertified" value="{{editList.belayCertified}}"></td>
-							<td [hidden]="edit == ind">{{data.position}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="position" [(ngModel)]="editList.position" value="{{editList.position}}"></td>
-							<td [hidden]="edit == ind">{{data.isAdmin}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="isAdmin" [(ngModel)]="editList.isAdmin" value="{{editList.isAdmin}}"></td>
-							<td [hidden]="edit == ind">
-								<a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
-								<a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
-							</td>
-							<td [hidden]="edit != ind">
-								<a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
-								<a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
-							</td>
-						</tr>
-					</table>
-				</div>
-	      </div>
-	    </ng-template>
-	  </ngb-tab>
-	  <ngb-tab>
-	  	<ng-template ngbTabTitle>
-              <div (click)="changeTab('events')">Events</div>
-        </ng-template>
-	    <ng-template ngbTabContent>
-	    	<div>
-	      		<form #userForm="ngForm" (ngSubmit)="add()" novalidate>
-					<table border="1" class="table table-bordered">
-						<tr>
-							<td>Event Name</td>
-							<td>
-								<!-- <input name="id" type="hidden" [(ngModel)]="s"> -->
-								<input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="events.name" required>
-							</td>
-						</tr>
+          <div class="row" *ngIf="loading">
+            <img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+          </div>
+          <div class="container">
+            <table border="1" class="table table-bordered" *ngIf="!loading">
+              <tr>
+                <td>Id</td>
+                <td>name</td>
+                <td>email</td>
+                <td>year</td>
+                <td>belayCertified</td>
+                <td>position</td>
+                <td>isAdmin</td>
+                <td>Action</td>
+              </tr>
 
-						<tr>
-							<td>Event Description</td>
-							<td><input class="form-control" style="width: 250px;" name="description" type="text" [(ngModel)]="events.description" required></td>
-						</tr>
+              <tr *ngFor="let data of userList; let ind = index">
+                <td>{{ind+1}}</td>
+                <td [hidden]="edit == ind">{{data.name}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                    value="{{editList.name}}"></td>
+                <td [hidden]="edit == ind">{{data.email}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="email" [(ngModel)]="editList.email"
+                    value="{{editList.email}}"></td>
+                <td [hidden]="edit == ind">{{data.year}}</td>
+                <td [hidden]="edit != ind"><input type="number" name="year" [(ngModel)]="editList.year"
+                    value="{{editList.year}}"></td>
+                <td [hidden]="edit == ind">{{data.belayCertified}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="belayCertified"
+                    [(ngModel)]="editList.belayCertified" value="{{editList.belayCertified}}"></td>
+                <td [hidden]="edit == ind">{{data.position}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="position" [(ngModel)]="editList.position"
+                    value="{{editList.position}}"></td>
+                <td [hidden]="edit == ind">{{data.isAdmin}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="isAdmin" [(ngModel)]="editList.isAdmin"
+                    value="{{editList.isAdmin}}"></td>
+                <td [hidden]="edit == ind">
+                  <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
+                  <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
+                </td>
+                <td [hidden]="edit != ind">
+                  <a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
+                  <a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
 
-						<tr>
-							<td>Event Location</td>
-							<td><input class="form-control" style="width: 250px;" name="location" type="text" [(ngModel)]="events.location" required></td>
-						</tr>
+    <!--  
+	  /////////////////////
+	  EVENTS
+	  /////////////////////
+	  -->
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="changeTab('events')">Events</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div>
+          <form #userForm="ngForm" (ngSubmit)="add()" novalidate>
+            <table border="1" class="table table-bordered">
+              <tr>
+                <td>Event Name</td>
+                <td>
+                  <!-- <input name="id" type="hidden" [(ngModel)]="s"> -->
+                  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="events.name"
+                    required>
+                </td>
+              </tr>
 
-						<tr>
-							<td>Event Time</td>
-							<td><input class="form-control" style="width: 250px;" name="time" type="text" [(ngModel)]="events.time" required></td>
-						</tr>
+              <tr>
+                <td>Event Description</td>
+                <td><input class="form-control" style="width: 250px;" name="description" type="text"
+                    [(ngModel)]="events.description" required></td>
+              </tr>
 
-						<tr>
-							<td colspan="2">
-								<input class="btn btn-success" type="submit" name="">
-							</td>
-						</tr>
-					</table>
-				</form>
+              <tr>
+                <td>Event Location</td>
+                <td><input class="form-control" style="width: 250px;" name="location" type="text"
+                    [(ngModel)]="events.location" required></td>
+              </tr>
 
-				<div class="row" *ngIf="loading">
-					<img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
-				</div>
-				<div class="container">
-					<table border="1" class="table table-bordered" *ngIf="!loading">
-						<tr>
-							<td>Id</td>
-							<td>Event</td>
-							<td>Description</td>
-							<td>Location</td>
-							<td>Time</td>
-							<td>Action</td>
-						</tr>
+              <tr>
+                <td>Event Time</td>
+                <td><input class="form-control" style="width: 250px;" name="time" type="text" [(ngModel)]="events.time"
+                    required></td>
+              </tr>
 
-						<tr *ngFor="let data of eventsList; let ind = index" >
-							<td>{{ind+1}}</td>
-							<td [hidden]="edit == ind">{{data.name}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name" value="{{editList.name}}"></td>
-							<td [hidden]="edit == ind">{{data.description}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description" value="{{editList.description}}"></td>
-							<td [hidden]="edit == ind">{{data.location}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="location" [(ngModel)]= "editList.location" value="{{editList.location}}"></td>
-							<td [hidden]="edit == ind">{{data.time}}</td>
-							<td [hidden]="edit != ind"><input type="text" name="time" [(ngModel)]="editList.time" value="{{editList.time}}"></td>
-							<td [hidden]="edit == ind">
-								<a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
-								<a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
-							</td>
-							<td [hidden]="edit != ind">
-								<a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
-								<a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
-							</td>
-						</tr>
-					</table>
-				</div>
-	      </div>
-	    </ng-template>
-	  </ngb-tab>
-	  <ngb-tab>
-	  	<ng-template ngbTabTitle>
-              <div (click)="changeTab('news')">News</div>
-        </ng-template>
-	    <ng-template ngbTabContent>
-	      	<div>
-	      		
-	      	</div>
-	    </ng-template>
-	  </ngb-tab>
-	  <ngb-tab >
-	  	<ng-template ngbTabTitle>
-              <div (click)="changeTab('eboard')">E-Board</div>
-        </ng-template>
-	    <ng-template ngbTabContent>
-	      	<div>
-	      		
-	      	</div>
-	    </ng-template>
-	  </ngb-tab>
-	</ngb-tabset>
+              <tr>
+                <td colspan="2">
+                  <input class="btn btn-success" type="submit" name="">
+                </td>
+              </tr>
+            </table>
+          </form>
+
+          <div class="row" *ngIf="loading">
+            <img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+          </div>
+          <div class="container">
+            <table border="1" class="table table-bordered" *ngIf="!loading">
+              <tr>
+                <td>Id</td>
+                <td>Event</td>
+                <td>Description</td>
+                <td>Location</td>
+                <td>Time</td>
+                <td>Action</td>
+              </tr>
+
+              <tr *ngFor="let data of eventsList; let ind = index">
+                <td>{{ind+1}}</td>
+                <td [hidden]="edit == ind">{{data.name}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                    value="{{editList.name}}"></td>
+                <td [hidden]="edit == ind">{{data.description}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                    value="{{editList.description}}"></td>
+                <td [hidden]="edit == ind">{{data.location}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="location" [(ngModel)]="editList.location"
+                    value="{{editList.location}}"></td>
+                <td [hidden]="edit == ind">{{data.time}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="time" [(ngModel)]="editList.time"
+                    value="{{editList.time}}"></td>
+                <td [hidden]="edit == ind">
+                  <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
+                  <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
+                </td>
+                <td [hidden]="edit != ind">
+                  <a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
+                  <a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!--  
+	  /////////////////////
+	  NEWS
+	  /////////////////////
+	  -->
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="changeTab('news')">News</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div>
+          <form #userForm="ngForm" (ngSubmit)="add()" novalidate>
+            <table border="1" class="table table-bordered">
+              <tr>
+                <td>News Name</td>
+                <td>
+                  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="news.name"
+                    required>
+                </td>
+              </tr>
+
+              <tr>
+                <td>News Description</td>
+                <td><input class="form-control" style="width: 250px;" name="description" type="text"
+                    [(ngModel)]="news.description" required></td>
+              </tr>
+
+              <tr>
+                <td>News Link</td>
+                <td><input class="form-control" style="width: 250px;" name="time" type="text" [(ngModel)]="news.link"
+                    required></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <input class="btn btn-success" type="submit" name="">
+                </td>
+              </tr>
+            </table>
+          </form>
+
+          <div class="row" *ngIf="loading">
+            <img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+          </div>
+          <div class="container">
+            <table border="1" class="table table-bordered" *ngIf="!loading">
+              <tr>
+                <td>Id</td>
+                <td>News</td>
+                <td>Description</td>
+                <td>Link</td>
+              </tr>
+
+              <tr *ngFor="let data of newsList; let ind = index">
+                <td>{{ind+1}}</td>
+                <td [hidden]="edit == ind">{{data.name}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                    value="{{editList.name}}"></td>
+                <td [hidden]="edit == ind">{{data.description}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                    value="{{editList.description}}"></td>
+                <td [hidden]="edit == ind">{{data.link}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="link" [(ngModel)]="editList.link"
+                    value="{{editList.link}}"></td>
+                <td [hidden]="edit == ind">
+                  <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
+                  <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
+                </td>
+                <td [hidden]="edit != ind">
+                  <a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
+                  <a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+
+    <!--  
+	  /////////////////////
+	  EBOARD
+	  /////////////////////
+	  -->
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="changeTab('eboard')">Eboard</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div>
+          <form #userForm="ngForm" (ngSubmit)="add()" novalidate>
+            <table border="1" class="table table-bordered">
+              <tr>
+                <td>Photo</td>
+                <td>
+                  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
+                    required>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <input class="btn btn-success" type="submit" name="">
+                </td>
+              </tr>
+            </table>
+          </form>
+
+          <div class="row" *ngIf="loading">
+            <img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+          </div>
+          <div class="container">
+            <table border="1" class="table table-bordered" *ngIf="!loading">
+              <tr>
+                <td>Id</td>
+                <td>Photo</td>
+              </tr>
+
+              <tr *ngFor="let data of eboardList; let ind = index">
+                <td>{{ind+1}}</td>
+                <td [hidden]="edit == ind">{{data.photo}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.photo"
+                    value="{{editList.name}}"></td>
+                <td [hidden]="edit == ind">
+                  <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
+                  <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
+                </td>
+                <td [hidden]="edit != ind">
+                  <a class="btn btn-success" (click)="submitEdit()" style="color: white">Submit</a>
+                  <a class="btn btn-danger" (click)="cancelEdit()" style="color: white">Cancel</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
 </div>
-
-
-

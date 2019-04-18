@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userService = require('./services/userService')
 const eventService = require('./services/eventService')
+const newsService = require('./services/newsService');
+const eboardService = require('./services/eboardService');
 const app = express();
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -69,7 +71,50 @@ app.get("/api/Event", (req,res)=>{
 ////////////////////////////////////////////////
 // News
 ////////////////////////////////////////////////
+app.put("/api/News", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.editNews();
+});
 
+app.delete("/api/News/:id", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.removeNews();
+});
+
+app.post("/api/News", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.addNews();
+});
+
+app.get("/api/News", (req, res) => {
+	let newsServiceObj = new newsService(req, res);
+	newsServiceObj.getNews();
+});
+
+////////////////////////////////////////////////
+// Eboard
+////////////////////////////////////////////////
+app.put("/api/Eboard", (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.editEboard();
+});
+
+app.delete('/api/Eboard/:id', (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.removeEboard();
+});
+
+app.post('/api/Eboard', (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.addEboard();
+});
+
+app.get('/api/Eboard', (req, res) => {
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.getEboard();
+});
+
+/// LISTEN TO MEEEE GOOOOO
 app.listen(3000, ()=>{
 	console.log('Test app listening on port 3000');
 })

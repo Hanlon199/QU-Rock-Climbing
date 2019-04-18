@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Injectable  } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import {CommonUserService} from './common.adminUserService';
 import {CommonEventService} from './common.adminEventService';
+import {CommonNewsService} from './common.adminNewsService';
+import {CommonEboardService} from './common.adminEboardService';
 import {Http,Response, Headers, RequestOptions} from '@angular/http';
 import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
@@ -42,7 +44,9 @@ export class AdminComponent implements OnInit {
 	private loading = true;
 	private edit:any = -1;
 	private currentTab:string='members';
-	constructor(private userService:CommonUserService, private eventService: CommonEventService) {}
+	constructor(private userService:CommonUserService, private eventService: CommonEventService, private newsService:CommonNewsService, 
+		private eboardService: CommonEboardService) {}
+		
   	ngOnInit() {
   		this.getAll()
 
@@ -78,7 +82,27 @@ export class AdminComponent implements OnInit {
 					// console.log("EVENT LIST: ", this.eventsList)
 				})
 				break;
-			
+			case "news":
+				this.newsService.getNews().subscribe((res:any) => {
+					let resParsed = JSON.parse(res._body);
+					this.newsList = [];
+					resParsed.data.map(e=>{
+						this.newsList.push(new News(e._id,e.name,e.description,e.link));
+					})
+					this.loading = false;
+				})
+				break;
+			case "eboard":
+				this.eboardService.getEboard().subscribe((res:any) =>{	
+					let resParsed = JSON.parse(res._body);
+					this.eboardList = [];
+					resParsed.data.map(e=>{
+						this.eboardList.push(new Eboard(e._id,e.photo));
+					})
+					this.loading = false;
+				})
+				break;
+
 			default:
 				// code...
 				break;
@@ -100,7 +124,19 @@ export class AdminComponent implements OnInit {
 				});
 				this.events = [];
 				break;
-			
+			case "news":
+				this.newsService.addNews(this.news).subscribe(res=>{
+					this.newsService.add_subject.next();
+				});
+				this.news = [];
+				break;
+			case "eboard":
+				this.eboardService.addEboard(this.eboard).subscribe(res=>{
+					this.eboardService.add_subject.next();
+				});
+				this.eboard = [];
+				break;
+
 			default:
 				// code...
 				break;
@@ -112,21 +148,40 @@ export class AdminComponent implements OnInit {
 			case "members":
 				let action = confirm(`Are you sure you wish to delete member: ${detail}`);	
 				if (action) {
-				this.userService.removeUser(id).subscribe(res=>{
-					this.userService.add_subject.next();
+					this.userService.removeUser(id).subscribe(res=>{
+						this.userService.add_subject.next();
 				});
 				this.getAll();
 				}
 				break;
 			case "events":
 				let action2 = confirm(`Are you sure you wish to delete the event: ${detail}`);	
-				if (action) {
-				this.eventService.removeEvent(id).subscribe(res=>{
-					this.eventService.add_subject.next();
+				if (action2) {
+					this.eventService.removeEvent(id).subscribe(res=>{
+						this.eventService.add_subject.next();
 				});
 				this.getAll();
 				}
 				break;
+			case "news":
+				let action3 = confirm(`Are you sure you wish to delete this news: ${detail}`);
+				if (action3) {
+					this.newsService.removeNews(id).subscribe(res => {
+						this.newsService.add_subject.next();
+					});
+					this.getAll();
+				}
+				break;
+			case "eboard":
+				let action4 = confirm(`Are you sure you wish to delete member: ${detail}`);	
+				if (action4) {
+					this.eboardService.removeEboard(id).subscribe(res=>{
+						this.eboardService.add_subject.next();
+				});
+				this.getAll();
+				}
+				break;
+
 			default:
 				// code...
 				break;
@@ -143,7 +198,13 @@ export class AdminComponent implements OnInit {
 			case "events":
 				this.editList = this.eventsList[id];
 				break;
-			
+			case "news":
+				this.editList = this.newsList[id];
+				break;
+			case "eboard":
+				this.editList = this.eboardList[id];
+				break;
+
 			default:
 				// code...
 				break;
@@ -165,6 +226,16 @@ export class AdminComponent implements OnInit {
 			case "events":
 				this.eventService.editEvent(this.editList).subscribe(res=>{
 					this.eventService.add_subject.next();
+				});
+				break;
+			case "news":
+				this.newsService.editNews(this.editList).subscribe(res => {
+					this.newsService.add_subject.next();
+				});
+				break;
+			case "eboard":
+				this.eboardService.editEboard(this.editList).subscribe(res=>{
+					this.eboardService.add_subject.next();
 				});
 				break;
 			default:

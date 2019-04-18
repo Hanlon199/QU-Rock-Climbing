@@ -3,32 +3,26 @@ const assert = require('assert');
 const url = 'mongodb://localhost';
 const ObjectID = require('mongodb').ObjectID;
 
-class EventsService{
+class EboardService{
 	constructor(req,res){
 		this.req = req;
 		this.res = res;
 	}
 
-	insert(event, db, callback){
-		db.collection('events').insertOne({
-			"name": event.name,
-			"description" : event.description,
-			"location" : event.location,
-			"time" : event.time
+	insert(user, db, callback){
+		db.collection('eboard').insertOne({
+			"photo" : user.photo
 		}, function(){
 			callback();
 		})
 	}
 
-	edit(event,db,callback){
-		db.collection('events').update(
-		{"_id": ObjectID(event.id)},
+	edit(user,db,callback){
+		db.collection('eboard').update(
+		{"_id": ObjectID(user.id)},
 		{
 			$set:{
-				"name": event.name,
-				"description" : event.description,
-				"location" : event.location,
-				"time" : event.time
+				"photo": user.photo
 			}
 		}, function(){
 			callback();
@@ -36,18 +30,18 @@ class EventsService{
 	}
 
 	remove(id, db, callback){
-		db.collection('events').remove({"_id":ObjectID(id)});
+		db.collection('eboard').deleteOne({"_id":ObjectID(id)});
 	}
 
 	//
-	addEvent(){
+	addEboard(){
 		let self = this;
-		let event = this.req.body.event;
+		let user = this.req.body.eboard;
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				self.insert(event,db,function(){
+				self.insert(user,db,function(){
 					return self.res.status(200).json({
 						status:"success"
 					})
@@ -63,22 +57,22 @@ class EventsService{
 	}
 
 	//
-	getEvent(){
+	getEboard(){
 		let self = this;
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				let events = [];
-				let cursor = db.collection('events').find();
+				let eboard = [];
+				let cursor = db.collection('eboard').find();
 
 				cursor.each((err,doc)=>{
 					assert.equal(err,null);
-					if (doc != null) {events.push(doc)}
+					if (doc != null) {eboard.push(doc)}
 					else{
 						return self.res.status(200).json({
 							status:"success",
-							data:events
+							data:eboard
 						});
 					}
 				});
@@ -94,15 +88,15 @@ class EventsService{
 
 
 	//
-	editEvent(){
+	editEboard(){
 		let self = this;
-		let event = this.req.body.event;
-		console.log("EVENT SERVICE EDIT: ",  event)
+		let user = this.req.body.eboard;
+		console.log("Daddy is thiccc",user);
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				self.edit(event,db,function(){
+				self.edit(user,db,function(){
 					return self.res.status(200).json({
 						status:"success"
 					})
@@ -120,11 +114,11 @@ class EventsService{
 
 
 	//
-	removeEvent(){
+	removeEboard(){
 		let self = this;
 		let id = this.req.params.id;
 		try{
-			MongoClient.connect(url, (err,client)=>{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				self.remove(id,db,function(){
@@ -143,4 +137,4 @@ class EventsService{
 	}
 }
 
-module.exports = EventsService;
+module.exports = EboardService;
