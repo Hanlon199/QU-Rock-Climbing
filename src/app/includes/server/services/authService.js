@@ -68,7 +68,7 @@ class authService {
         })
     }
 
-    compareUsername(token) {
+    compareUsername() {
         let self = this;
         let user = this.req.body.user;
         try {
