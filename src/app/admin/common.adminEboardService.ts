@@ -20,7 +20,8 @@ export class CommonEboardService{
 		return this.http.post('/api/Eboard', 
 		{"eboard":
 			{
-			"photo": user.photo
+			"photo": user.photo,
+			"description": user.description
 			}
 		});
 	}
@@ -40,7 +41,8 @@ export class CommonEboardService{
 		"eboard":
 			{
 			"id":user.id,
-			"photo": user.photo
+			"photo": user.photo,
+			"desctiption": user.description
 			}
 		});
 	}
