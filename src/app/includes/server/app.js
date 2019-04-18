@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userService = require('./services/userService')
 const eventService = require('./services/eventService')
+const authService = require('./services/authService')
 const app = express();
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -19,6 +20,25 @@ app.use(bodyParser.urlencoded({extended:false}));
 // 	address: {type:String}
 // }, {versionKey:false});
 // var model = mongoose.model('users', testSchema, 'users');
+
+
+////////////////////////////////////////////////
+// Auth
+////////////////////////////////////////////////
+app.get("/api/Auth", (req,res)=>{
+	let authServiceObj = new authService(req,res);
+	authServiceObj.getUsername();
+});
+
+app.post("/api/Auth/add", (req,res)=>{
+	let authServiceObj = new authService(req,res);
+	authServiceObj.addUsername();
+});
+
+app.post("/api/Auth/check", (req,res)=>{
+	let authServiceObj = new authService(req,res);
+	authServiceObj.compareUsername();
+});
 
 ////////////////////////////////////////////////
 // Users
