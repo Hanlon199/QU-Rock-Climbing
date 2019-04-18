@@ -120,9 +120,13 @@ class authService {
                     } else {
                         bcrypt.compare(password, eboard[0].password, function (err, res) {
                             if (res == true) {
+                                const token = jwt.sign({data: eboard[0].username}, "tg9IjkgX96", {
+                                    expiresIn: 604800 // 1 week
+                                });
                                 return self.res.status(200).json({
                                     status: "sucess",
-                                    msg: "The token has been sent"
+                                    msg: "logged in",
+                                    token: token
                                 })
                             } else if (res == false) {
                                 return self.res.status(200).json({
