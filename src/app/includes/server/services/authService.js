@@ -145,6 +145,74 @@ class authService {
             });
         }
     }
+
+    deleteUser(){
+		let self = this;
+		let id = this.req.params.id;
+		try{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
+				var db = client.db('ClimbingClubDB')
+				assert.equal(null,err);
+				self.remove(id,db,function(){
+					return self.res.status(200).json({
+						status:"success"
+					})
+				})
+			});
+		}
+		catch(error){
+			return self.status(500).json({
+				status:"500",
+				error:error
+			});
+		}
+    }
+
+    remove(id, db, callback){
+		db.collection('auth').deleteOne({"_id":ObjectID(id)});
+	}
+
+    updateUser(){
+		let self = this;
+		let user = this.req.body.user;
+		try{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
+				var db = client.db('ClimbingClubDB')
+				assert.equal(null,err);
+				self.edit(user,db,function(){
+					return self.res.status(200).json({
+						status:"success"
+					})
+				})
+			});
+		}
+		catch(error){
+			return self.status(500).json({
+				status:"500",
+				error:error
+			});
+		}
+    }
+
+    edit(user,db,callback){
+        var temp = "";
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                if (err) throw err;
+                temp = hash;
+                db.collection('auth').update(
+                    {"_id": ObjectID(user.id)},
+                    {
+                        $set:{
+                            "username": user.username,
+                            "password" :temp
+                        }
+                    }, function(){
+                        callback();
+                    })
+            });
+        });
+	}
 }
 
 module.exports = authService;

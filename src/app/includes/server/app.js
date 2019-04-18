@@ -42,6 +42,16 @@ app.post("/api/Auth/check", (req, res) => {
 	authServiceObj.compareUsername();
 });
 
+app.put("/api/Auth/", (req, res) => {
+	let authServiceObj = new authService(req, res);
+	authServiceObj.updateUser();
+});
+
+app.delete("/api/Auth/:id", (req, res) => {
+	let authServiceObj = new authService(req, res);
+	authServiceObj.deleteUser();
+});
+
 ////////////////////////////////////////////////
 // Users
 ////////////////////////////////////////////////
