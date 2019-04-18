@@ -36,7 +36,7 @@ class EboardService{
 	//
 	addEboard(){
 		let self = this;
-		let user = this.req.body.member;
+		let user = this.req.body.eboard;
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
@@ -63,7 +63,7 @@ class EboardService{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				let members = [];
+				let eboard = [];
 				let cursor = db.collection('eboard').find();
 
 				cursor.each((err,doc)=>{
@@ -72,7 +72,7 @@ class EboardService{
 					else{
 						return self.res.status(200).json({
 							status:"success",
-							data:members
+							data:eboard
 						});
 					}
 				});
@@ -90,9 +90,8 @@ class EboardService{
 	//
 	editEboard(){
 		let self = this;
-		let user = this.req.body.member;
+		let user = this.req.body.eboard;
 		console.log("Daddy is thiccc",user);
-		// console.log("USER SERVICE, EDIT: ",  user)
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

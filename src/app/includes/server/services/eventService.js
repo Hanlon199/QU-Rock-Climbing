@@ -21,7 +21,6 @@ class EventsService{
 	}
 
 	edit(event,db,callback){
-		// console.log(ObjectID(user.id))
 		db.collection('events').update(
 		{"_id": ObjectID(event.id)},
 		{
@@ -44,7 +43,6 @@ class EventsService{
 	addEvent(){
 		let self = this;
 		let event = this.req.body.event;
-		// console.log("USER SERVICE ADD: ",  user)
 		try{
 			MongoClient.connect(url, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

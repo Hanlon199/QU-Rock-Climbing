@@ -17,8 +17,8 @@ export class CommonEboardService{
 
 	addEboard(user){
 		// console.log("COMMON USER ADD: ", user)
-		return this.http.put('/api/Eboard', 
-		{"member":
+		return this.http.post('/api/Eboard', 
+		{"eboard":
 			{
 			"photo": user.photo
 			}
@@ -35,10 +35,11 @@ export class CommonEboardService{
 
 	editEboard(user){
 		// console.log("COMMON SERVICE EDIT: " , user)
-		return this.http.post('/api/Eboard', 
+		return this.http.put('/api/Eboard', 
 		{
-		"member":
+		"eboard":
 			{
+			"id":user.id,
 			"photo": user.photo
 			}
 		});

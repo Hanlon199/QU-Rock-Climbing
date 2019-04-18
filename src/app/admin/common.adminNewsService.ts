@@ -36,7 +36,7 @@ export class CommonNewsService{
 
 	editNews(news){
 		return this.http.put('/api/News', 
-		{"event":
+		{"news":
 			{
 			"id":news.id,
 			"name":news.name,
