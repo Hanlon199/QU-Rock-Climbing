@@ -42,15 +42,33 @@ class authService {
     addUsername() {
         let self = this;
         let user = this.req.body.user;
+        let eboard = [];
         try {
             MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
                 var db = client.db('ClimbingClubDB')
+                var userExist = false;
                 assert.equal(null, err);
-                self.insert(user, db, function () {
-                    return self.res.status(200).json({
-                        status: "success"
-                    })
-                })
+                let cursor = db.collection('eboard').find({ username: user.username });
+                cursor.each((err, doc) => {
+                    assert.equal(err, null);
+                    if (doc != null) {
+                        eboard.push(doc);
+                        console.log("eboards", eboard);
+                    } else if (eboard[0] != null) {
+                        return self.res.status(200).json({
+                            status: "fail",
+                            msg: "username already in use"
+                        })
+                    } else if (eboard[0] == null) {
+                        self.insert(user, db, function () {
+                            console.log("insert pass");
+                            return self.res.status(200).json({
+                                status: "success",
+                                msg: "user sucessfully added"
+                            })
+                        })
+                    }
+                });
             });
         }
         catch (error) {
