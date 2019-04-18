@@ -1,4 +1,4 @@
-export class Eboard {
+export class Auth {
 	constructor(
 		public id: string,
 		public username: string,
