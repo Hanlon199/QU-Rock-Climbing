@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 ////////////////////////////////////////////////
 // Auth
 ////////////////////////////////////////////////
-// app.get("/api/Auth", (req, res) => {
-// 	let authServiceObj = new authService(req, res);
-// 	authServiceObj.getUsername();
-// });
+app.get("/api/Auth", (req, res) => {
+	let authServiceObj = new authService(req, res);
+	authServiceObj.getUsername();
+});
 
 app.post("/api/Auth/add", (req, res) => {
 	let authServiceObj = new authService(req, res);
