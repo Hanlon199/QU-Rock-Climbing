@@ -5,7 +5,7 @@ const eventService = require('./services/eventService')
 const authService = require('./services/authService')
 const app = express();
 app.use(bodyParser());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 // var mongoose = require('mongoose');
 // var port = '8080';
 // app.use((req,res,next)=>{
@@ -25,64 +25,64 @@ app.use(bodyParser.urlencoded({extended:false}));
 ////////////////////////////////////////////////
 // Auth
 ////////////////////////////////////////////////
-app.get("/api/Auth", (req,res)=>{
-	let authServiceObj = new authService(req,res);
+app.get("/api/Auth", (req, res) => {
+	let authServiceObj = new authService(req, res);
 	authServiceObj.getUsername();
 });
 
-app.post("/api/Auth/add", (req,res)=>{
-	let authServiceObj = new authService(req,res);
+app.post("/api/Auth/add", (req, res) => {
+	let authServiceObj = new authService(req, res);
 	authServiceObj.addUsername();
 });
 
-app.post("/api/Auth/check", (req,res)=>{
-	let authServiceObj = new authService(req,res);
+app.post("/api/Auth/check", (req, res) => {
+	let authServiceObj = new authService(req, res);
 	authServiceObj.compareUsername();
 });
 
 ////////////////////////////////////////////////
 // Users
 ////////////////////////////////////////////////
-app.post("/api/User", (req,res)=>{
-	let userServiceObj = new userService(req,res);
+app.post("/api/User", (req, res) => {
+	let userServiceObj = new userService(req, res);
 	userServiceObj.addUser();
 });
 
-app.delete("/api/User/:id", (req,res)=>{
-	let userServiceObj = new userService(req,res);
+app.delete("/api/User/:id", (req, res) => {
+	let userServiceObj = new userService(req, res);
 	userServiceObj.removeUser();
 });
 
-app.put("/api/User", (req,res)=>{
-	let userServiceObj = new userService(req,res);
+app.put("/api/User", (req, res) => {
+	let userServiceObj = new userService(req, res);
 	userServiceObj.editUser();
 });
 
-app.get("/api/User", (req,res)=>{
-	let userServiceObj = new userService(req,res);
+app.get("/api/User", (req, res) => {
+	let userServiceObj = new userService(req, res);
 	userServiceObj.getUser();
 });
 
 ////////////////////////////////////////////////
 // Events
 ////////////////////////////////////////////////
-app.put("/api/Event", (req,res)=>{
-	let eventServiceObj = new eventService(req,res);
+app.put("/api/Event", (req, res) => {
+	let eventServiceObj = new eventService(req, res);
 	eventServiceObj.addEvent();
 });
 
-app.delete("/api/Event/:id", (req,res)=>{
-	let eventServiceObj = new eventService(req,res);
+app.delete("/api/Event/:id", (req, res) => {
+	let eventServiceObj = new eventService(req, res);
 	eventServiceObj.removeEvent();
 });
 
-app.post("/api/Event", (req,res)=>{
-	let eventServiceObj = new eventService(req,res);
+app.post("/api/Event", (req, res) => {
+	let eventServiceObj = new eventService(req, res);
 	eventServiceObj.editEvent();
 });
 
-app.get("/api/Event", (req,res)=>{
-	let eventServiceObj = new eventService(req,res);
+app.get("/api/Event", (req, res) => {
+	let eventServiceObj = new eventService(req, res);
 	eventServiceObj.getEvent();
 });
 
@@ -90,6 +90,6 @@ app.get("/api/Event", (req,res)=>{
 // News
 ////////////////////////////////////////////////
 
-app.listen(3000, ()=>{
+app.listen(3000, () => {
 	console.log('Test app listening on port 3000');
 })
