@@ -11,7 +11,6 @@ export class CommonAuthService {
     public authList: Eboard[];
     public add_subject = new Subject<String>()
     constructor(private http: Http) {
-        // console.log(this.http)
         this.authList = [];
     }
 
@@ -24,8 +23,6 @@ export class CommonAuthService {
             {
                 "member":
                 {
-                    "photo": username.photo,
-                    "description": username.description,
                     "username": username.username,
                     "password": username.password
                 }
@@ -36,8 +33,6 @@ export class CommonAuthService {
             {
                 "member":
                 {
-                    "photo": username.photo,
-                    "description": username.description,
                     "username": username.username,
                     "password": username.password
                 }
