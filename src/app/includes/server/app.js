@@ -80,7 +80,7 @@ app.get("/api/User", (req, res) => {
 ////////////////////////////////////////////////
 app.put("/api/Event", (req, res) => {
 	let eventServiceObj = new eventService(req, res);
-	eventServiceObj.addEvent();
+	eventServiceObj.editEvent();
 });
 
 app.delete("/api/Event/:id", (req, res) => {
@@ -90,7 +90,7 @@ app.delete("/api/Event/:id", (req, res) => {
 
 app.post("/api/Event", (req, res) => {
 	let eventServiceObj = new eventService(req, res);
-	eventServiceObj.editEvent();
+	eventServiceObj.addEvent();
 });
 
 app.get("/api/Event", (req, res) => {
