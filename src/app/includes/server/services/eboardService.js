@@ -89,7 +89,7 @@ class EboardService{
 	}
 
 
-	//
+	
 	editEboard(){
 		let self = this;
 		let user = this.req.body.eboard;
