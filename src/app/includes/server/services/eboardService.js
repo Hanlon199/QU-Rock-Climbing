@@ -38,6 +38,8 @@ class EboardService{
 	addEboard(){
 		let self = this;
 		let user = this.req.body.eboard;
+		let filename = this.req.file.originalname
+		console.log("FILENAME: " , filename)
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

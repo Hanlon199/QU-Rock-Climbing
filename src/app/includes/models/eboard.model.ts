@@ -1,6 +1,7 @@
 export class Eboard{
 	constructor(
 		public id:string,
-		public photo:string
+		public photo:any,
+		public description:String
 	){}
 }

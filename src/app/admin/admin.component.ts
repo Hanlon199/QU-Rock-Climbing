@@ -136,22 +136,26 @@ export class AdminComponent implements OnInit {
 				// this.onUpload();
 				const fd = new FormData();
 				fd.append('image',this.selectedFile,this.selectedFile.name);
-				this.eboard["photo"] = fd;
-				console.log("PHOTO: " , this.eboard["photo"]);
-				// this.eboardService.addEboard(this.eboard).subscribe(res=>{
-				// 	this.eboardService.add_subject.next();
-				// });
-				this.http.put('/api/Eboard', this.eboard, {
-					reportProgress: true,
-					observe: 'events'
-				})
-				.subscribe(event=>{
+				// this.eboard["photo"] = fd;
+				console.log("PHOTO: " ,fd);
+				this.eboardService.addEboard(this.eboard, fd).subscribe(event=>{
 					if (event.type === HttpEventType.UploadProgress) {
 						console.log("Upload Progress: " + Math.round((event.loaded/event.total * 100)) + "%");
 					}else if(event.type == HttpEventType.Response){
 						console.log("Image Upload");
 					}
 				})
+				// this.http.put('/api/Eboard', fd, {
+				// 	reportProgress: true,
+				// 	observe: 'events'
+				// })
+				// .subscribe(event=>{
+				// 	if (event.type === HttpEventType.UploadProgress) {
+				// 		console.log("Upload Progress: " + Math.round((event.loaded/event.total * 100)) + "%");
+				// 	}else if(event.type == HttpEventType.Response){
+				// 		console.log("Image Upload");
+				// 	}
+				// })
 				this.eboard = [];
 				this.selectedFile = null;
 				break;
