@@ -15,8 +15,8 @@ export class CommonEboardService{
 		this.eboardList = [];
 	}
 
-	addEboard(user,formData){
-		return this.http.put('/api/Eboard', {"eboardImage":formData});
+	addEboard(formData){
+		return this.http.put('/api/Eboard', formData);
 	}
 
 	removeEboard(memberID){

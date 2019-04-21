@@ -135,10 +135,12 @@ export class AdminComponent implements OnInit {
 			case "eboard":
 				// this.onUpload();
 				const fd = new FormData();
-				fd.append('image',this.selectedFile,this.selectedFile.name);
+				fd.append('eboardImage',this.selectedFile,this.selectedFile.name);
+				fd.append('description',this.eboard["description"])
 				// this.eboard["photo"] = fd;
-				console.log("PHOTO: " ,fd);
-				this.eboardService.addEboard(this.eboard, fd).subscribe(event=>{
+				// console.log("PHOTO: " ,fd);
+				console.log("Desc: " ,this.eboard["description"]);
+				this.eboardService.addEboard(fd).subscribe(event=>{
 					if (event.type === HttpEventType.UploadProgress) {
 						console.log("Upload Progress: " + Math.round((event.loaded/event.total * 100)) + "%");
 					}else if(event.type == HttpEventType.Response){
