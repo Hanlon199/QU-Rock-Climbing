@@ -255,6 +255,7 @@
                 <td>News</td>
                 <td>Description</td>
                 <td>Link</td>
+                <td>Action</td>
               </tr>
 
               <tr *ngFor="let data of newsList; let ind = index">
@@ -300,14 +301,23 @@
               <tr>
                 <td>Photo</td>
                 <td>
-                  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
+                  <input type="file" name="image" (change)="onFileSelected($event)" required>
+                 <!--  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
+                    required> -->
+                </td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td>
+                  <input class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="eboard.description"
                     required>
                 </td>
               </tr>
 
               <tr>
                 <td colspan="2">
-                  <input class="btn btn-success" type="submit" name="">
+                  <!-- <input class="btn btn-success" type="submit" name="" (click)="onUpload()"> -->
+                  <input class="btn btn-success" type="submit" name="" >
                 </td>
               </tr>
             </table>
@@ -321,6 +331,8 @@
               <tr>
                 <td>Id</td>
                 <td>Photo</td>
+                <td>Description</td>
+                <td>Action</td>
               </tr>
 
               <tr *ngFor="let data of eboardList; let ind = index">

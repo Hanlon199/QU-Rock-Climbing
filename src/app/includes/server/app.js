@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const userService = require('./services/userService')
 const eventService = require('./services/eventService')
@@ -95,6 +96,7 @@ app.get("/api/News", (req, res) => {
 // Eboard
 ////////////////////////////////////////////////
 app.put("/api/Eboard", (req, res) => {
+
 	let eboardServiceObj = new eboardService(req, res);
 	eboardServiceObj.editEboard();
 });
@@ -113,6 +115,12 @@ app.get('/api/Eboard', (req, res) => {
 	let eboardServiceObj = new eboardService(req, res);
 	eboardServiceObj.getEboard();
 });
+
+// app.put('/api/Eboard/image', (req, res) => {
+// 	console.log("IMAGE REQ: " , req)
+// 	let eboardServiceObj = new eboardService(req, res);
+// 	eboardServiceObj.getEboard();
+// });
 
 /// LISTEN TO MEEEE GOOOOO
 app.listen(3000, ()=>{

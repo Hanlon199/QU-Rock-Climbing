@@ -16,11 +16,12 @@ export class CommonEboardService{
 	}
 
 	addEboard(user){
-		// console.log("COMMON USER ADD: ", user)
+		console.log("COMMON USER ADD: ", user)
 		return this.http.post('/api/Eboard', 
 		{"eboard":
 			{
-			"photo": user.photo
+			"photo": user.photo,
+			"description": user.description
 			}
 		});
 	}

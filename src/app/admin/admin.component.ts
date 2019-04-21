@@ -9,6 +9,7 @@ import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
 import {News} from '../includes/models/news.model';
 import {Eboard} from '../includes/models/eboard.model';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
 
@@ -44,8 +45,9 @@ export class AdminComponent implements OnInit {
 	private loading = true;
 	private edit:any = -1;
 	private currentTab:string='members';
+	private selectedFile:File = null;
 	constructor(private userService:CommonUserService, private eventService: CommonEventService, private newsService:CommonNewsService, 
-		private eboardService: CommonEboardService) {}
+		private eboardService: CommonEboardService, private http:HttpClient) {}
 		
   	ngOnInit() {
   		this.getAll()
@@ -131,10 +133,27 @@ export class AdminComponent implements OnInit {
 				this.news = [];
 				break;
 			case "eboard":
-				this.eboardService.addEboard(this.eboard).subscribe(res=>{
-					this.eboardService.add_subject.next();
-				});
+				// this.onUpload();
+				const fd = new FormData();
+				fd.append('image',this.selectedFile,this.selectedFile.name);
+				this.eboard["photo"] = fd;
+				console.log("PHOTO: " , this.eboard["photo"]);
+				// this.eboardService.addEboard(this.eboard).subscribe(res=>{
+				// 	this.eboardService.add_subject.next();
+				// });
+				this.http.put('/api/Eboard', this.eboard, {
+					reportProgress: true,
+					observe: 'events'
+				})
+				.subscribe(event=>{
+					if (event.type === HttpEventType.UploadProgress) {
+						console.log("Upload Progress: " + Math.round((event.loaded/event.total * 100)) + "%");
+					}else if(event.type == HttpEventType.Response){
+						console.log("Image Upload");
+					}
+				})
 				this.eboard = [];
+				this.selectedFile = null;
 				break;
 
 			default:
@@ -287,6 +306,27 @@ export class AdminComponent implements OnInit {
     	XLSX.utils.book_append_sheet(workBook, workSheet, 'data'); // add the worksheet to the book
     	XLSX.writeFile(workBook, name);
 		// this.exportAsExcelFile(data,name);
+	}
+
+	onFileSelected(event){
+		console.log(event);
+		this.selectedFile = <File>event.target.files[0];
+	}
+
+	onUpload(){
+		// const fd = new FormData();
+		// fd.append('image',this.selectedFile,this.selectedFile.name);
+		// this.http.put('/api/Eboard/image', fd, {
+		// 	reportProgress: true,
+		// 	observe: 'events'
+		// })
+		// .subscribe(event=>{
+		// 	if (event.type === HttpEventType.UploadProgress) {
+		// 		console.log("Upload Progress: " + Math.round((event.loaded/event.total * 100)) + "%");
+		// 	}else if(event.type == HttpEventType.Response){
+		// 		console.log("Image Upload");
+		// 	}
+		// })
 	}
 
 }	

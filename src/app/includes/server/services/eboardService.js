@@ -11,7 +11,8 @@ class EboardService{
 
 	insert(user, db, callback){
 		db.collection('eboard').insertOne({
-			"photo" : user.photo
+			"photo" : user.photo,
+			"description" : user.description
 		}, function(){
 			callback();
 		})
