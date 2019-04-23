@@ -11,19 +11,11 @@ export class CommonEboardService{
 	public eboardList: Eboard[];
 	public add_subject = new Subject<String>()
 	constructor(private http:Http){
-		// console.log(this.http)
 		this.eboardList = [];
 	}
 
-	addEboard(user){
-		// console.log("COMMON USER ADD: ", user)
-		return this.http.post('/api/Eboard', 
-		{"eboard":
-			{
-			"photo": user.photo,
-			"description": user.description
-			}
-		});
+	addEboard(formData){
+		return this.http.put('/api/Eboard', formData);
 	}
 
 	removeEboard(memberID){
@@ -36,13 +28,15 @@ export class CommonEboardService{
 
 	editEboard(user){
 		// console.log("COMMON SERVICE EDIT: " , user)
-		return this.http.put('/api/Eboard', 
+		return this.http.post('/api/Eboard', 
 		{
 		"eboard":
 			{
 			"id":user.id,
-			"photo": user.photo,
-			"description": user.description
+			"eboardImage": user.photo,
+			"description": user.description,
+			"position": user.position,
+			"name": user.name
 			}
 		});
 	}

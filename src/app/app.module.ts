@@ -20,7 +20,7 @@ import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
 import { LoginComponent } from './login/login.component';
 import { TestUserComponent } from './test-user/test-user.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import {MainPipe} from './includes/pipe/main-pipe'
 
 //services
 import {CommonService} from './common.service';
@@ -29,7 +29,6 @@ import {CommonEventService} from './admin/common.adminEventService'
 import {CommonNewsService} from './admin/common.adminNewsService'
 import {CommonEboardService} from './admin/common.adminEboardService'
 import {CommonAuthService} from './login/common.loginAuthService'
-
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -70,7 +69,8 @@ const appRoutes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     MDBBootstrapModule.forRoot(),
-    NgbModule
+    NgbModule,
+    MainPipe
   ],
   providers: [CommonService,CommonUserService,CommonEventService, CommonNewsService, CommonEboardService, CommonAuthService],
   bootstrap: [AppComponent],

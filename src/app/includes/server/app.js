@@ -1,4 +1,9 @@
+//INCLUDES
 const express = require('express');
+const fs = require('fs');
+const mongoose = require('mongoose');
+const multer = require('multer');
+const upload = multer({destination:'../images/eboard/'})
 const bodyParser = require('body-parser');
 const userService = require('./services/userService')
 const eventService = require('./services/eventService')
@@ -23,6 +28,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // }, {versionKey:false});
 // var model = mongoose.model('users', testSchema, 'users');
 
+//ROUTES
+const userRoutes = require('../routes/user.route');
+const eventRoutes = require('../routes/event.route');
+const newsRoutes = require('../routes/news.route');
+const eboardRoutes = require('../routes/eboard.route');
+
+//APP
+const app = express();
+app.use(bodyParser());
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use("/api/User",userRoutes);
+app.use("/api/Event",eventRoutes);
+app.use("/api/News",newsRoutes);
+app.use("/api/Eboard",eboardRoutes);
 
 ////////////////////////////////////////////////
 // Auth
@@ -51,99 +71,6 @@ app.delete("/api/Auth/:id", (req, res) => {
 	let authServiceObj = new authService(req, res);
 	authServiceObj.deleteUser();
 });
-
-////////////////////////////////////////////////
-// Users
-////////////////////////////////////////////////
-app.post("/api/User", (req, res) => {
-	let userServiceObj = new userService(req, res);
-	userServiceObj.addUser();
-});
-
-app.delete("/api/User/:id", (req, res) => {
-	let userServiceObj = new userService(req, res);
-	userServiceObj.removeUser();
-});
-
-app.put("/api/User", (req, res) => {
-	let userServiceObj = new userService(req, res);
-	userServiceObj.editUser();
-});
-
-app.get("/api/User", (req, res) => {
-	let userServiceObj = new userService(req, res);
-	userServiceObj.getUser();
-});
-
-////////////////////////////////////////////////
-// Events
-////////////////////////////////////////////////
-app.put("/api/Event", (req, res) => {
-	let eventServiceObj = new eventService(req, res);
-	eventServiceObj.editEvent();
-});
-
-app.delete("/api/Event/:id", (req, res) => {
-	let eventServiceObj = new eventService(req, res);
-	eventServiceObj.removeEvent();
-});
-
-app.post("/api/Event", (req, res) => {
-	let eventServiceObj = new eventService(req, res);
-	eventServiceObj.addEvent();
-});
-
-app.get("/api/Event", (req, res) => {
-	let eventServiceObj = new eventService(req, res);
-	eventServiceObj.getEvent();
-});
-
-////////////////////////////////////////////////
-// News
-////////////////////////////////////////////////
-app.put("/api/News", (req, res) => {
-	let newsServiceObj = new newsService(req, res);
-	newsServiceObj.editNews();
-});
-
-app.delete("/api/News/:id", (req, res) => {
-	let newsServiceObj = new newsService(req, res);
-	newsServiceObj.removeNews();
-});
-
-app.post("/api/News", (req, res) => {
-	let newsServiceObj = new newsService(req, res);
-	newsServiceObj.addNews();
-});
-
-app.get("/api/News", (req, res) => {
-	let newsServiceObj = new newsService(req, res);
-	newsServiceObj.getNews();
-});
-
-////////////////////////////////////////////////
-// Eboard
-////////////////////////////////////////////////
-app.put("/api/Eboard", (req, res) => {
-	let eboardServiceObj = new eboardService(req, res);
-	eboardServiceObj.editEboard();
-});
-
-app.delete('/api/Eboard/:id', (req, res) => {
-	let eboardServiceObj = new eboardService(req, res);
-	eboardServiceObj.removeEboard();
-});
-
-app.post('/api/Eboard', (req, res) => {
-	let eboardServiceObj = new eboardService(req, res);
-	eboardServiceObj.addEboard();
-});
-
-app.get('/api/Eboard', (req, res) => {
-	let eboardServiceObj = new eboardService(req, res);
-	eboardServiceObj.getEboard();
-});
-
 /// LISTEN TO MEEEE GOOOOO
 app.listen(3000, ()=>{
 	console.log('Test app listening on port 3000');

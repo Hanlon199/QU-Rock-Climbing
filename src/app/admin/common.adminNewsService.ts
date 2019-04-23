@@ -16,7 +16,7 @@ export class CommonNewsService{
 	}
 
 	addNews(news){
-		return this.http.post('/api/News', 
+		return this.http.put('/api/News', 
 		{"news":
 			{
 			"name":news.name,
@@ -35,7 +35,7 @@ export class CommonNewsService{
 	}
 
 	editNews(news){
-		return this.http.put('/api/News', 
+		return this.http.post('/api/News', 
 		{"news":
 			{
 			"id":news.id,

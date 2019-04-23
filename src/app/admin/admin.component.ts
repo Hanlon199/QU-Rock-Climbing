@@ -9,6 +9,7 @@ import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
 import {News} from '../includes/models/news.model';
 import {Eboard} from '../includes/models/eboard.model';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
 
@@ -42,10 +43,12 @@ export class AdminComponent implements OnInit {
 	private eboardList: Eboard[];
 	private editList:any = [];
 	private loading = true;
+	private showNotify = false;
 	private edit:any = -1;
 	private currentTab:string='members';
+	private selectedFile:File = null;
 	constructor(private userService:CommonUserService, private eventService: CommonEventService, private newsService:CommonNewsService, 
-		private eboardService: CommonEboardService) {}
+		private eboardService: CommonEboardService, private http:HttpClient) {}
 		
   	ngOnInit() {
   		this.getAll()
@@ -97,7 +100,7 @@ export class AdminComponent implements OnInit {
 					let resParsed = JSON.parse(res._body);
 					this.eboardList = [];
 					resParsed.data.map(e=>{
-						this.eboardList.push(new Eboard(e._id,e.photo, e.description));
+						this.eboardList.push(new Eboard(e._id,e.photo,e.description,e.position, e.name));
 					})
 					this.loading = false;
 				})
@@ -131,10 +134,27 @@ export class AdminComponent implements OnInit {
 				this.news = [];
 				break;
 			case "eboard":
-				this.eboardService.addEboard(this.eboard).subscribe(res=>{
-					this.eboardService.add_subject.next();
-				});
-				this.eboard = [];
+				this.showNotify = false;
+				if (this.checkValidFile()) {
+					const fd = new FormData();
+					let order = this.getOrder()
+					fd.append('eboardImage',this.selectedFile,this.eboard["position"] + ".jpg");
+					fd.append('description',this.eboard["description"]);
+					fd.append('position',this.eboard["position"]);
+					fd.append('name',this.eboard["name"]);
+					fd.append('order',order);
+					this.eboardService.addEboard(fd).subscribe(event=>{
+						// if (event.type === HttpEventType.UploadProgress) {
+						// 	console.log("Upload Progress: " + Math.round((event.loaded/event.total * 100)) + "%");
+						// }else if(event.type == HttpEventType.Response){
+						// 	console.log("Image Upload");
+						// }
+					})
+					this.eboard = [];
+					this.selectedFile = null;
+				}else{
+					this.showNotify = true
+				}
 				break;
 
 			default:
@@ -249,7 +269,7 @@ export class AdminComponent implements OnInit {
 	changeTab(tab:any){
 		this.currentTab = tab;
 		this.getAll();
-		console.log("TAB: " , this.currentTab)
+		// console.log("TAB: " , this.currentTab)
 	}
 
 	export(){
@@ -287,6 +307,43 @@ export class AdminComponent implements OnInit {
     	XLSX.utils.book_append_sheet(workBook, workSheet, 'data'); // add the worksheet to the book
     	XLSX.writeFile(workBook, name);
 		// this.exportAsExcelFile(data,name);
+	}
+
+	onFileSelected(event){
+		this.selectedFile = <File>event.target.files[0];
+	}
+
+	checkValidFile(){
+		if (this.selectedFile.type == "image/jpeg" || this.selectedFile.type == "image/png") {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	getOrder(){
+		switch (this.eboard["position"]) {
+			case "president":
+				return "0"
+				break;
+			case "vice":
+				return "1"
+				break;
+			case "treasurer":
+				return "2"
+				break;
+			case "manager":
+				return "3"
+				break;
+			case "technique":
+				return "4"
+				break;
+			case "secretary":
+				return "5"
+				break;
+			default:
+				// code...
+				break;
+		}
 	}
 
 }	
