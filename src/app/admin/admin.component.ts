@@ -100,7 +100,7 @@ export class AdminComponent implements OnInit {
 					let resParsed = JSON.parse(res._body);
 					this.eboardList = [];
 					resParsed.data.map(e=>{
-						this.eboardList.push(new Eboard(e._id,e.photo,e.description,e.position, e.name));
+						this.eboardList.push(new Eboard(e._id,e.photo,e.description,e.position, e.name, e.order));
 					})
 					this.loading = false;
 				})
