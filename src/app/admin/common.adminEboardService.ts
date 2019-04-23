@@ -11,7 +11,6 @@ export class CommonEboardService{
 	public eboardList: Eboard[];
 	public add_subject = new Subject<String>()
 	constructor(private http:Http){
-		// console.log(this.http)
 		this.eboardList = [];
 	}
 
@@ -35,7 +34,9 @@ export class CommonEboardService{
 			{
 			"id":user.id,
 			"eboardImage": user.photo,
-			"description": user.description
+			"description": user.description,
+			"position": user.position,
+			"name": user.name
 			}
 		});
 	}

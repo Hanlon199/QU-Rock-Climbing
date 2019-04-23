@@ -9,21 +9,37 @@ class EboardService{
 		this.res = res;
 	}
 
-	insert(user, db, callback){
-		db.collection('eboard').insertOne({
-			"photo" : user.photo,
-			"description" : user.description
-		}, function(){
-			callback();
-		})
+	insert(eboard, db, callback){
+		db.collection('eboard').find({"position":eboard.position}).count()
+			.then((res)=>{
+				console.log("RETURNED: " , res)
+				if (res != 0){
+					console.log("EDITTING BITCH")
+					this.editEboard();
+				} else{
+					console.log("NOT EDITTING BISH :(")
+					db.collection('eboard').insertOne({
+						"photo" : eboard.imagePath,
+						"description" : eboard.description,
+						"position" : eboard.position,
+						"name" : eboard.name,
+						"order" : eboard.order
+					}, function(){
+						callback();
+					})
+				}
+			})
 	}
 
-	edit(user,db,callback){
+	edit(eboard,db,callback){
 		db.collection('eboard').update(
-		{"_id": ObjectID(user.id)},
+		{"position": eboard.position},
 		{
 			$set:{
-				"photo": user.photo
+				"description": eboard.description,
+				"position": eboard.position,
+				"name": eboard.name,
+				"order": eboard.order
 			}
 		}, function(){
 			callback();
@@ -37,14 +53,18 @@ class EboardService{
 	//
 	addEboard(){
 		let self = this;
-		let user = this.req.body.eboard;
-		let filename = this.req.file.originalname
-		console.log("FILENAME: " , filename)
+		let eboard = [];
+		eboard["imagePath"] = this.req.file.path;
+		eboard["description"] = this.req.body.description; 
+		eboard["position"] = this.req.body.position; 
+		eboard["name"] = this.req.body.name; 
+		eboard["order"] = this.req.body.order; 
+		console.log("EBOARD: ", eboard)
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				self.insert(user,db,function(){
+				self.insert(eboard,db,function(){
 					return self.res.status(200).json({
 						status:"success"
 					})
@@ -93,13 +113,18 @@ class EboardService{
 	//
 	editEboard(){
 		let self = this;
-		let user = this.req.body.eboard;
-		console.log("Daddy is thiccc",user);
+		let eboard = [];
+		eboard["imagePath"] = this.req.file.path;
+		eboard["description"] = this.req.body.description; 
+		eboard["position"] = this.req.body.position; 
+		eboard["name"] = this.req.body.name; 
+		eboard["order"] = this.req.body.order; 
+		console.log(eboard)
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
-				self.edit(user,db,function(){
+				self.edit(eboard,db,function(){
 					return self.res.status(200).json({
 						status:"success"
 					})

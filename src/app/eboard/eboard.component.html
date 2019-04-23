@@ -3,119 +3,48 @@
     <h1>Meet the E-Board</h1>    
   </div>
 </div>
-
-<div style="margin-left: 5%; margin-right: 5%">
+<div class="row" *ngIf="loading">
+  <img src="src/app/includes/images/loading.gif" height="300" width="300" style="margin: auto;">
+</div>
+<div style="margin-left: 5%; margin-right: 5%" *ngIf="!loading">
   <!--Grid row-->
-  <div class="row">
-    <!-- President -->
-    <!--Grid column-->
-    <div class="col">
+  <div class="row"> 
+    <div class="col" *ngFor="let eboard of eboardList | slice:0:3 | sort:'order'">
       <mdb-card>
         <div class="avatar mx-auto">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+          <img src="src/app/includes/images/eboard/{{eboard.eboardImage}}" class="rounded-circle" width="250px" height="250px">
         </div>
         <mdb-card-body>
           <mdb-card-title>
-            <h4>Kyle Gorman</h4>
+            <h4>{{eboard.name}}</h4>
+            <h6>{{eboard.position}}</h6>
           </mdb-card-title>
           <hr>
           <p>
-            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
-            adipisci</p>
+            <i class="fas fa-quote-left"></i>{{eboard.description}}<i class="fas fa-quote-right"></i></p>
         </mdb-card-body>
       </mdb-card>
     </div>
-
-    <div class="col">
-      <mdb-card>
-        <div class="avatar mx-auto">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-        </div>
-        <mdb-card-body>
-          <mdb-card-title>
-            <h4>Eamon Duffy</h4>
-          </mdb-card-title>
-          <hr>
-          <p>
-            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
-            adipisci</p>
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-
-    <div class="col">
-      <mdb-card>
-        <div class="avatar mx-auto">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-        </div>
-        <mdb-card-body>
-          <mdb-card-title>
-            <h4>Ryan Hanlon</h4>
-          </mdb-card-title>
-          <hr>
-          <p>
-            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
-            adipisci</p>
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-  </div>
+  </div> 
 </div> 
 
-<div style="margin: 3%">
-  Grid row
-  <div class="row">
-
-    <div class="col">
-      <mdb-card>
-        <div class="avatar mx-auto">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-        </div>
-        <mdb-card-body>
-          <mdb-card-title>
-            <h4>Will Solz</h4>
-          </mdb-card-title>
-          <hr>
-          <p>
-            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
-            adipisci</p>
-        </mdb-card-body>
-      </mdb-card>
+<div style="margin-left: 5%; margin-right: 5%; margin-top: 25px;" *ngIf="!loading">
+    <div class="row"> 
+      <div class="col" *ngFor="let eboard of eboardList | slice:3:6">
+        <mdb-card>
+          <div class="avatar mx-auto">
+            <img src="src/app/includes/images/eboard/{{eboard.eboardImage}}" class="rounded-circle" width="250px" height="250px">
+          </div>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4>{{eboard.name}}</h4>
+              <h6>{{eboard.position}}</h6>
+            </mdb-card-title>
+            <hr>
+            <p>
+              <i class="fas fa-quote-left"></i>{{eboard.description}}<i class="fas fa-quote-right"></i></p>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
     </div>
-
-    <div class="col">
-      <mdb-card>
-        <div class="avatar mx-auto">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-        </div>
-        <mdb-card-body>
-          <mdb-card-title>
-            <h4>Maire Clarke</h4>
-          </mdb-card-title>
-          <hr>
-          <p>
-            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
-            adipisci</p>
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-
-    <div class="col">
-      <mdb-card>
-        <div class="avatar mx-auto">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-        </div>
-        <mdb-card-body>
-          <mdb-card-title>
-            <h4>Rachel Piscitelli</h4>
-          </mdb-card-title>
-          <hr>
-          <p>
-            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
-            adipisci</p>
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-  </div>
-  <!--Grid row-->
-</div> <!-- End styling -->
+</div>

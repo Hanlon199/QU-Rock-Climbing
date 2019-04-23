@@ -304,6 +304,14 @@
                   <input type="file" name="image" (change)="onFileSelected($event)" required>
                  <!--  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
                     required> -->
+                <div *ngIf="showNotify" class="alert alert-danger">Incorrect File type, try again chief</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>
+                  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.name"
+                    required>
                 </td>
               </tr>
               <tr>
@@ -311,6 +319,21 @@
                 <td>
                   <input class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="eboard.description"
                     required>
+                </td>
+              </tr>
+              <tr>
+                <td>Position</td>
+                <td>
+                  <select class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="eboard.position"
+                    required>
+                    <option value="president">President</option>
+                    <option value="vice">Vice-President</option>
+                    <option value="treasurer">Treasurer</option>
+                    <option value="technique">Technique Guide</option>
+                    <option value="manager">Team Manager</option>
+                    <option value="secretary">Secretary</option>
+                    <option value="advisor">Faculty Advisor</option>
+                  </select> 
                 </td>
               </tr>
 
@@ -331,15 +354,34 @@
               <tr>
                 <td>Id</td>
                 <td>Photo</td>
+                <td>Name</td>
                 <td>Description</td>
+                <td>Position</td>
                 <td>Action</td>
               </tr>
 
               <tr *ngFor="let data of eboardList; let ind = index">
                 <td>{{ind+1}}</td>
-                <td [hidden]="edit == ind">{{data.photo}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.photo"
+                <td [hidden]="edit == ind">{{data.eboardImage}}</td>
+                <td [hidden]="edit == ind">{{data.name}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
                     value="{{editList.name}}"></td>
+                <td [hidden]="edit == ind">{{data.description}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                    value="{{editList.description}}"></td>
+                <td [hidden]="edit == ind">{{data.position}}</td>
+                <td [hidden]="edit != ind"> 
+                  <select class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="editList.position"
+                    required>
+                    <option value="president">President</option>
+                    <option value="vice">Vice-President</option>
+                    <option value="treasurer">Treasurer</option>
+                    <option value="technique">Technique Guide</option>
+                    <option value="manager">Team Manager</option>
+                    <option value="secretary">Secretary</option>
+                    <option value="advisor">Faculty Advisor</option>
+                  </select>
+                </td>
                 <td [hidden]="edit == ind">
                   <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
                   <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>

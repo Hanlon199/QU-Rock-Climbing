@@ -34,17 +34,17 @@ const upload = multer({
 // Eboard
 ////////////////////////////////////////////////
 router.put("", upload.single('eboardImage'), (req, res,next) => {
-	console.log("FILE: " , req.file)
-	console.log("DESC: ", req.body.description)
+	// console.log("FILE: " , req.file)
+	// console.log("DESC: ", req.body)
 	const eboard = new Eboard({
 		id: new mongoose.Types.ObjectId(),
 		eboardImage: req.file.path,
-		description: req.body.description
+		description: req.body.description,
+		position: req.body.position,
+		name: req.body.name,
 	})
-	router.put("", (req, res) => {
-		let eboardServiceObj = new eboardService(req, res);
-		eboardServiceObj.addEboard();
-	});
+	let eboardServiceObj = new eboardService(req, res);
+	eboardServiceObj.addEboard();
 	// eboard.save()
 	// 	.then(res=>{
 	// 		console.log(res);
