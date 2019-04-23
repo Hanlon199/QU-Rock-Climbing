@@ -6,7 +6,29 @@
 /out-tsc
 
 # dependencies
-/node_modules
+!/node_modules
+node_modules/*
+
+!/node_modules/@angular-devkit
+node_modules/@angular-devkit/*
+
+!node_modules/@angular-devkit/build-angular
+node_modules/@angular-devkit/build-angular/*
+
+!node_modules/@angular-devkit/build-angular/src
+node_modules/@angular-devkit/build-angular/src/*
+
+!node_modules/@angular-devkit/build-angular/src/angular-cli-files
+node_modules/@angular-devkit/build-angular/src/angular-cli-files/*
+
+!node_modules/@angular-devkit/build-angular/src/angular-cli-files/models
+node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/*
+
+!node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs
+node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/*
+
+!node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/browser.js
+
 
 # IDEs and editors
 /.idea
