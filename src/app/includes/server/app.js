@@ -10,9 +10,6 @@ const eventService = require('./services/eventService')
 const newsService = require('./services/newsService');
 const eboardService = require('./services/eboardService');
 const authService = require('./services/authService')
-const app = express();
-app.use(bodyParser());
-app.use(bodyParser.urlencoded({ extended: false }));
 // var mongoose = require('mongoose');
 // var port = '8080';
 // app.use((req,res,next)=>{

@@ -107,7 +107,7 @@ export class AdminComponent implements OnInit {
 				break;
 
 			default:
-				// code...
+				return null;
 				break;
 		}
 		
@@ -158,7 +158,7 @@ export class AdminComponent implements OnInit {
 				break;
 
 			default:
-				// code...
+				return null;
 				break;
 		}
 	}
@@ -203,7 +203,7 @@ export class AdminComponent implements OnInit {
 				break;
 
 			default:
-				// code...
+				return null;
 				break;
 		}
 		
@@ -226,7 +226,7 @@ export class AdminComponent implements OnInit {
 				break;
 
 			default:
-				// code...
+				return null;
 				break;
 		}
 	}
@@ -259,7 +259,7 @@ export class AdminComponent implements OnInit {
 				});
 				break;
 			default:
-				// code...
+				return null;
 				break;
 		}
 		this.cancelEdit();
@@ -297,6 +297,7 @@ export class AdminComponent implements OnInit {
 				data = this.eboardList;
 				break;
 			default:
+				return null;
 				break;
 		}
 
@@ -341,7 +342,7 @@ export class AdminComponent implements OnInit {
 				return "5"
 				break;
 			default:
-				// code...
+				return null;
 				break;
 		}
 	}
