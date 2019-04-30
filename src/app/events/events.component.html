@@ -1,17 +1,39 @@
-<!-- Cards for Events -->
-<div class="card" *ngFor="let event of events">
-  <div class="card-body">
-    <div class="container">
-      <div class="row">
-        <h4 style="padding-left: 11px">{{ event.name }}</h4>
-      </div>
-      <div class="row">
-        <div class="col-sm-8">
-          <p style="float: left">{{ event.desc }}</p>
-        </div>
-        <div class="col-sm-4">
-          <app-event-register-modal-component></app-event-register-modal-component>
+<div class="row" style="padding-top: 2%; padding-bottom: 2%">
+  <div style="margin: auto;">
+    <h1>Our Events</h1>
+  </div>
+</div>
+<div class="row" *ngIf="loading">
+  <img src="src/app/includes/images/loading.gif" height="300" width="300"
+    style="margin: auto; margin: auto;width: 300px;height: 300px;">
+</div>
+<div *ngIf="!loading">
+  <div class="card" *ngFor="let event of eventList">
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-8" style=" padding-left: 0px;">
+            <div class="row">
+              <h3 style="float: left;">{{ event.name }}</h3>
+            </div>
+            <div class="row">
+              <p style="float: left;">{{ event.description }}</p>
+            </div>
+            <div class="row">
+              <p style="float: left;">Where: {{ event.location }}</p>
+            </div>
+            <div class="row">
+              <p style="float: left;">Date: {{ event.date }}</p>
+            </div>
+            <div class="row">
+              <p style="float: left;">Time: {{ event.time }}</p>
+            </div>
+          </div>
+          <div class="col-4" style="padding-top: 6%">
+            <app-event-register-modal-component></app-event-register-modal-component>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>

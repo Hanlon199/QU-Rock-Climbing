@@ -129,7 +129,6 @@
               <tr>
                 <td>Event Name</td>
                 <td>
-                  <!-- <input name="id" type="hidden" [(ngModel)]="s"> -->
                   <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="events.name"
                     required>
                 </td>
@@ -149,8 +148,14 @@
 
               <tr>
                 <td>Event Time</td>
-                <td><input class="form-control" style="width: 250px;" name="time" type="text" [(ngModel)]="events.time"
-                    required></td>
+                <td><input class="form-control" style="width: 250px;" name="time" type="text" 
+                  [(ngModel)]="events.time" required></td>
+              </tr>
+
+              <tr>
+                <td>Event Date</td>
+                <td><input class="form-control" style="width: 250px;" name="date" type="text" 
+                  [(ngModel)]="events.date" required></td>
               </tr>
 
               <tr>
@@ -172,6 +177,7 @@
                 <td>Description</td>
                 <td>Location</td>
                 <td>Time</td>
+                <td>Date</td>
                 <td>Action</td>
               </tr>
 
@@ -189,6 +195,9 @@
                 <td [hidden]="edit == ind">{{data.time}}</td>
                 <td [hidden]="edit != ind"><input type="text" name="time" [(ngModel)]="editList.time"
                     value="{{editList.time}}"></td>
+                <td [hidden]="edit == ind">{{data.date}}</td>
+                <td [hidden]="edit != ind"><input type="text" name="date" [(ngModel)]="editList.date"
+                    value="{{editList.date}}"></td>
                 <td [hidden]="edit == ind">
                   <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
                   <a (click)="delete(data.id, data.name)" class="btn btn-danger" style="color: white">Delete</a>
@@ -302,9 +311,9 @@
                 <td>Photo</td>
                 <td>
                   <input type="file" name="image" (change)="onFileSelected($event)" required>
-                 <!--  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
+                  <!--  <input class="form-control" style="width: 250px;" name="name" type="text" [(ngModel)]="eboard.photo"
                     required> -->
-                <div *ngIf="showNotify" class="alert alert-danger">Incorrect File type, try again chief</div>
+                  <div *ngIf="showNotify" class="alert alert-danger">Incorrect File type, try again chief</div>
                 </td>
               </tr>
               <tr>
@@ -317,15 +326,15 @@
               <tr>
                 <td>Description</td>
                 <td>
-                  <input class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="eboard.description"
-                    required>
+                  <input class="form-control" style="width: 250px;" name="desc" type="text"
+                    [(ngModel)]="eboard.description" required>
                 </td>
               </tr>
               <tr>
                 <td>Position</td>
                 <td>
-                  <select class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="eboard.position"
-                    required>
+                  <select class="form-control" style="width: 250px;" name="desc" type="text"
+                    [(ngModel)]="eboard.position" required>
                     <option value="president">President</option>
                     <option value="vice">Vice-President</option>
                     <option value="treasurer">Treasurer</option>
@@ -333,14 +342,14 @@
                     <option value="manager">Team Manager</option>
                     <option value="secretary">Secretary</option>
                     <option value="advisor">Faculty Advisor</option>
-                  </select> 
+                  </select>
                 </td>
               </tr>
 
               <tr>
                 <td colspan="2">
                   <!-- <input class="btn btn-success" type="submit" name="" (click)="onUpload()"> -->
-                  <input class="btn btn-success" type="submit" name="" >
+                  <input class="btn btn-success" type="submit" name="">
                 </td>
               </tr>
             </table>
@@ -370,9 +379,9 @@
                 <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
                     value="{{editList.description}}"></td>
                 <td [hidden]="edit == ind">{{data.position}}</td>
-                <td [hidden]="edit != ind"> 
-                  <select class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="editList.position"
-                    required>
+                <td [hidden]="edit != ind">
+                  <select class="form-control" style="width: 250px;" name="desc" type="text"
+                    [(ngModel)]="editList.position" required>
                     <option value="president">President</option>
                     <option value="vice">Vice-President</option>
                     <option value="treasurer">Treasurer</option>

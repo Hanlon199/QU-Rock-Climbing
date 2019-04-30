@@ -76,13 +76,11 @@ export class AdminComponent implements OnInit {
 			case "events":
 				this.eventService.getEvent().subscribe((res:any) =>{	
 					let resParsed = JSON.parse(res._body);
-					// console.log("RES: ", resParsed.data);
 					this.eventsList = [];
 					resParsed.data.map(e=>{
-						this.eventsList.push(new Event(e._id,e.name,e.description,e.location,e.time));
+						this.eventsList.push(new Event(e._id,e.name,e.description,e.location,e.time,e.date));
 					})
 					this.loading = false;
-					// console.log("EVENT LIST: ", this.eventsList)
 				})
 				break;
 			case "news":
