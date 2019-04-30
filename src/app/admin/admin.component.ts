@@ -107,7 +107,6 @@ export class AdminComponent implements OnInit {
 				break;
 
 			default:
-				return null;
 				break;
 		}
 		
@@ -158,7 +157,6 @@ export class AdminComponent implements OnInit {
 				break;
 
 			default:
-				return null;
 				break;
 		}
 	}
@@ -201,10 +199,6 @@ export class AdminComponent implements OnInit {
 				this.getAll();
 				}
 				break;
-
-			default:
-				return null;
-				break;
 		}
 		
 	}
@@ -223,10 +217,6 @@ export class AdminComponent implements OnInit {
 				break;
 			case "eboard":
 				this.editList = this.eboardList[id];
-				break;
-
-			default:
-				return null;
 				break;
 		}
 	}
@@ -257,9 +247,6 @@ export class AdminComponent implements OnInit {
 				this.eboardService.editEboard(this.editList).subscribe(res=>{
 					this.eboardService.add_subject.next();
 				});
-				break;
-			default:
-				return null;
 				break;
 		}
 		this.cancelEdit();
@@ -296,9 +283,6 @@ export class AdminComponent implements OnInit {
 				name = 'eboard_export_'
 				data = this.eboardList;
 				break;
-			default:
-				return null;
-				break;
 		}
 
 		name = name + todayParsed + '.xlsx';
@@ -325,25 +309,16 @@ export class AdminComponent implements OnInit {
 		switch (this.eboard["position"]) {
 			case "president":
 				return "0"
-				break;
 			case "vice":
 				return "1"
-				break;
 			case "treasurer":
 				return "2"
-				break;
 			case "manager":
 				return "3"
-				break;
 			case "technique":
 				return "4"
-				break;
 			case "secretary":
 				return "5"
-				break;
-			default:
-				return null;
-				break;
 		}
 	}
 
