@@ -19,23 +19,42 @@ export class CommonAuthService {
     }
 
     addUsername(username) {
-        return this.http.put('/api/Auth/add',
+        return this.http.put('/api/Auth',
             {
-                "member":
+                "user":
+                {
+                    "username": username.username,
+                    "password": username.password,
+                    "status": username.status
+                }
+            });
+    }
+    compareUsername(username) {
+        return this.http.post('/api/Auth/check',
+            {
+                "user":
                 {
                     "username": username.username,
                     "password": username.password
                 }
             });
     }
-    compareUsername(username) {
-        return this.http.put('/api/Auth/check',
+
+    editAdmin(username) {
+        console.log("COMMON: " ,username)
+        return this.http.post('/api/Auth',
             {
-                "member":
+                "user":
                 {
+                    "id": username.id,
                     "username": username.username,
-                    "password": username.password
+                    "password": username.password,
+                    "status": 'approved'
                 }
             });
+    }
+
+    removeUser(id) {
+        return this.http.delete('/api/Auth/' + id);
     }
 }

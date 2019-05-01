@@ -4,6 +4,7 @@ import {CommonUserService} from './common.adminUserService';
 import {CommonEventService} from './common.adminEventService';
 import {CommonNewsService} from './common.adminNewsService';
 import {CommonEboardService} from './common.adminEboardService';
+import {CommonApplicantService} from '../apply/common.applicantService';
 import {Http,Response, Headers, RequestOptions} from '../../../node_modules/@angular/http';
 import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
@@ -47,12 +48,13 @@ export class AdminComponent implements OnInit {
 	private edit:any = -1;
 	private currentTab:string='members';
 	private selectedFile:File = null;
+	private pendingAppCount:number = 0;
 	constructor(private userService:CommonUserService, private eventService: CommonEventService, private newsService:CommonNewsService, 
-		private eboardService: CommonEboardService, private http:HttpClient) {}
+		private eboardService: CommonEboardService, private http:HttpClient, private applicantService:CommonApplicantService) {}
 		
   	ngOnInit() {
   		this.getAll()
-
+  		this.getPendingAppCount();
 		this.userService.add_subject.subscribe(response =>{
 			this.getAll();
 		});
@@ -255,6 +257,7 @@ export class AdminComponent implements OnInit {
 
 	changeTab(tab:any){
 		this.currentTab = tab;
+		this.edit = -1;
 		this.getAll();
 		// console.log("TAB: " , this.currentTab)
 	}
@@ -320,6 +323,14 @@ export class AdminComponent implements OnInit {
 			case "secretary":
 				return "5"
 		}
+	}
+
+	getPendingAppCount(){
+		this.applicantService.getApplicants()
+			.subscribe((res:any) =>{	
+				let resParsed = JSON.parse(res._body);
+				this.pendingAppCount = resParsed.data.length;
+			})
 	}
 
 }	

@@ -18,7 +18,9 @@ class authService {
                 var db = client.db('ClimbingClubDB')
                 assert.equal(null, err);
                 let auth = [];
-                let cursor = db.collection('auth').find();
+                let cursor = db.collection('auth').find({
+                    status: 'pending',
+                });
                 cursor.each((err, doc) => {
                     assert.equal(err, null);
                     if (doc != null) { auth.push(doc) }
@@ -86,7 +88,8 @@ class authService {
                 temp = hash;
                 db.collection('auth').insertOne({
                     "username": user.username,
-                    "password": temp
+                    "password": temp,
+                    "status": user.status
                 }, function () {
                     callback();
                 })
@@ -104,7 +107,8 @@ class authService {
                 var db = client.db('ClimbingClubDB')
                 assert.equal(null, err);
                 let cursor = db.collection('auth').find({
-                    username: username
+                    username: username,
+                    status:'approved'
                 });
                 cursor.each((err, doc) => {
                     assert.equal(err, null);
@@ -205,7 +209,8 @@ class authService {
                     {
                         $set:{
                             "username": user.username,
-                            "password" :temp
+                            "password" :temp,
+                            "status" :user.status
                         }
                     }, function(){
                         callback();

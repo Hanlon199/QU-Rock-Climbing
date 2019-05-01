@@ -1,0 +1,84 @@
+<div class="container" style="margin-top: 25px;">
+	<ngb-tabset>
+	  <!--  
+		/////////////////////
+		Gen MEMBERS
+		/////////////////////
+		-->
+	    <ngb-tab>
+	      <ng-template ngbTabTitle>
+	        <div>General Members</div>
+	      </ng-template>
+	      <ng-template ngbTabContent>
+	  		<div class="container">
+					<div class="row">
+						<div *ngIf="loading" style="margin: auto !important;">
+							<img src="src/app/includes/images/loading.gif">
+						</div>	
+					</div>
+					<table class="table table-bordered" *ngIf="!loading" style="margin-top: 25px;">
+						<thead class="thead-dark">
+							<tr style="text-align: center">
+								<th>Name</th>
+								<th>Email</th>
+								<th>Year of Grad</th>
+								<th>Belay Certified</th>
+								<th>Reasoning</th>
+								<th style="width: 50px;">Action</th>
+							</tr>
+						</thead>
+
+						<tr *ngFor="let app of applicants; let id = index">
+							<td style="font-size: 16px;">{{app.name}}</td>
+							<td style="font-size: 16px;">{{app.email}}</td>
+							<td style="font-size: 16px;">{{app.year}}</td>
+							<td style="font-size: 16px;">{{app.belayCertified}}</td>
+							<td style="font-size: 16px;">{{app.reasoning}}</td>
+							<td>
+								<button class="btn btn-success btn-small" (click)="approve(id, 'member')" style="width: 150px;">Approve <span *ngIf="loadingButton && loadingButtonID == id"><img height="25" width="25" src="src/app/includes/images/loadingSmall.gif"></span></button>
+								<button class="btn btn-danger btn-small" (click)="deny(id, 'member')" style="width: 150px;">Deny <span *ngIf="loadingButton && loadingButtonID == id"><img height="25" width="25" src="src/app/includes/images/loadingSmall.gif"></span></button>
+							</td>
+						</tr>
+					</table>
+				</div>
+	      </ng-template>
+	    </ngb-tab>
+	   <!--  
+		/////////////////////
+		Admin
+		/////////////////////
+		-->
+	    <ngb-tab>
+	      <ng-template ngbTabTitle>
+	        <div>Admin</div>
+	      </ng-template>
+	      <ng-template ngbTabContent>
+	  		<div class="container">
+					<div class="row">
+						<div *ngIf="loading" style="margin: auto !important;">
+							<img src="src/app/includes/images/loading.gif">
+						</div>	
+					</div>
+					<table class="table table-bordered" *ngIf="!loading" style="margin-top: 25px;">
+						<thead class="thead-dark">
+							<tr style="text-align: center">
+								<th>Name</th>
+								<th style="width: 50px;">Action</th>
+							</tr>
+						</thead>
+
+						<tr *ngFor="let app of adminApps; let id = index">
+							<td style="font-size: 16px;">{{app.username}}</td>
+							<td>
+								<button class="btn btn-success btn-small" (click)="approve(id, 'admin')" style="width: 150px;">Approve <span *ngIf="loadingButton && loadingButtonID == id"><img height="25" width="25" src="src/app/includes/images/loadingSmall.gif"></span></button>
+								<button class="btn btn-danger btn-small" (click)="deny(id, 'admin')" style="width: 150px;">Deny <span *ngIf="loadingButton && loadingButtonID == id"><img height="25" width="25" src="src/app/includes/images/loadingSmall.gif"></span></button>
+							</td>
+						</tr>
+					</table>
+				</div>
+	      </ng-template>
+	    </ngb-tab>
+
+	</ngb-tabset>
+
+</div>

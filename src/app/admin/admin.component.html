@@ -2,14 +2,16 @@
   <div class="row" style="border-bottom: 1px solid black; margin-bottom: 5px;">
     <button class="btn btn-small btn-success" (click)="export()">Export Current to Excel <i
         class="fas fa-file-excel"></i></button>
+
+    <a href="/pending" class="btn btn-small btn-primary" >View Pending Applicants <span class="badge badge-danger ml-2" *ngIf="pendingAppCount != 0">{{pendingAppCount}}</span></a>
   </div>
 
+  <ngb-tabset>
   <!--  
 	/////////////////////
 	MEMBERS
 	/////////////////////
 	-->
-  <ngb-tabset>
     <ngb-tab>
       <ng-template ngbTabTitle>
         <div (click)="changeTab('members')">Members</div>
@@ -81,22 +83,22 @@
               <tr *ngFor="let data of userList; let ind = index">
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.name}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                <td [hidden]="edit != ind"><input type="text" name="name" class="form-control" [(ngModel)]="editList.name"
                     value="{{editList.name}}"></td>
                 <td [hidden]="edit == ind">{{data.email}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="email" [(ngModel)]="editList.email"
+                <td [hidden]="edit != ind"><input type="text" name="email" class="form-control" [(ngModel)]="editList.email"
                     value="{{editList.email}}"></td>
                 <td [hidden]="edit == ind">{{data.year}}</td>
-                <td [hidden]="edit != ind"><input type="number" name="year" [(ngModel)]="editList.year"
+                <td [hidden]="edit != ind"><input type="number" name="year" class="form-control" [(ngModel)]="editList.year"
                     value="{{editList.year}}"></td>
                 <td [hidden]="edit == ind">{{data.belayCertified}}</td>
                 <td [hidden]="edit != ind"><input type="text" name="belayCertified"
-                    [(ngModel)]="editList.belayCertified" value="{{editList.belayCertified}}"></td>
+                    class="form-control" [(ngModel)]="editList.belayCertified" value="{{editList.belayCertified}}"></td>
                 <td [hidden]="edit == ind">{{data.position}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="position" [(ngModel)]="editList.position"
+                <td [hidden]="edit != ind"><input type="text" name="position" class="form-control" [(ngModel)]="editList.position"
                     value="{{editList.position}}"></td>
                 <td [hidden]="edit == ind">{{data.isAdmin}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="isAdmin" [(ngModel)]="editList.isAdmin"
+                <td [hidden]="edit != ind"><input type="text" name="isAdmin" class="form-control" [(ngModel)]="editList.isAdmin"
                     value="{{editList.isAdmin}}"></td>
                 <td [hidden]="edit == ind">
                   <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
@@ -178,16 +180,16 @@
               <tr *ngFor="let data of eventsList; let ind = index">
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.name}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                <td [hidden]="edit != ind"><input type="text" name="name" class="form-control" [(ngModel)]="editList.name"
                     value="{{editList.name}}"></td>
                 <td [hidden]="edit == ind">{{data.description}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                <td [hidden]="edit != ind"><input type="text" name="description" class="form-control" [(ngModel)]="editList.description"
                     value="{{editList.description}}"></td>
                 <td [hidden]="edit == ind">{{data.location}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="location" [(ngModel)]="editList.location"
+                <td [hidden]="edit != ind"><input type="text" name="location" class="form-control" [(ngModel)]="editList.location"
                     value="{{editList.location}}"></td>
                 <td [hidden]="edit == ind">{{data.time}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="time" [(ngModel)]="editList.time"
+                <td [hidden]="edit != ind"><input type="text" name="time" class="form-control" [(ngModel)]="editList.time"
                     value="{{editList.time}}"></td>
                 <td [hidden]="edit == ind">
                   <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
@@ -261,13 +263,13 @@
               <tr *ngFor="let data of newsList; let ind = index">
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.name}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                <td [hidden]="edit != ind"><input type="text" name="name" class="form-control" [(ngModel)]="editList.name"
                     value="{{editList.name}}"></td>
                 <td [hidden]="edit == ind">{{data.description}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                <td [hidden]="edit != ind"><input type="text" name="description" class="form-control" [(ngModel)]="editList.description"
                     value="{{editList.description}}"></td>
                 <td [hidden]="edit == ind">{{data.link}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="link" [(ngModel)]="editList.link"
+                <td [hidden]="edit != ind"><input type="text" name="link" class="form-control" [(ngModel)]="editList.link"
                     value="{{editList.link}}"></td>
                 <td [hidden]="edit == ind">
                   <a (click)="showEdit(ind)" class="btn btn-primary" style="color: white">Edit</a>
@@ -364,14 +366,14 @@
                 <td>{{ind+1}}</td>
                 <td [hidden]="edit == ind">{{data.eboardImage}}</td>
                 <td [hidden]="edit == ind">{{data.name}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="name" [(ngModel)]="editList.name"
+                <td [hidden]="edit != ind"><input type="text" name="name" class="form-control" [(ngModel)]="editList.name"
                     value="{{editList.name}}"></td>
                 <td [hidden]="edit == ind">{{data.description}}</td>
-                <td [hidden]="edit != ind"><input type="text" name="description" [(ngModel)]="editList.description"
+                <td [hidden]="edit != ind"><input type="text" name="description" class="form-control" [(ngModel)]="editList.description"
                     value="{{editList.description}}"></td>
                 <td [hidden]="edit == ind">{{data.position}}</td>
                 <td [hidden]="edit != ind"> 
-                  <select class="form-control" style="width: 250px;" name="desc" type="text" [(ngModel)]="editList.position"
+                  <select class="form-control" style="width: 250px;" name="desc" type="text" class="form-control" [(ngModel)]="editList.position"
                     required>
                     <option value="president">President</option>
                     <option value="vice">Vice-President</option>

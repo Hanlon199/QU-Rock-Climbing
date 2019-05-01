@@ -20,6 +20,7 @@ import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
 import { LoginComponent } from './login/login.component';
 import { TestUserComponent } from './test-user/test-user.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { PendingComponent } from './pending/pending.component'
 import {MainPipe} from './includes/pipe/main-pipe'
 
 //services
@@ -29,6 +30,8 @@ import {CommonEventService} from './admin/common.adminEventService'
 import {CommonNewsService} from './admin/common.adminNewsService'
 import {CommonEboardService} from './admin/common.adminEboardService'
 import {CommonAuthService} from './login/common.loginAuthService'
+import {CommonApplicantService} from './apply/common.applicantService';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -40,6 +43,8 @@ const appRoutes:Routes =[
   {path: 'login', component: LoginComponent},
   {path: 'admin',component: AdminComponent},
   {path: 'apply',component: ApplyComponent},
+  {path: 'pending',component: PendingComponent},
+  {path: 'sign-up',component: SignUpComponent},
   {path: 'test',component: TestUserComponent}
 ];
 
@@ -60,7 +65,9 @@ const appRoutes:Routes =[
     LoginComponent,
     TestUserComponent,
     EventRegisterModalComponent,
-    EventRegisterModalContent
+    EventRegisterModalContent,
+    PendingComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +79,15 @@ const appRoutes:Routes =[
     NgbModule,
     MainPipe
   ],
-  providers: [CommonService,CommonUserService,CommonEventService, CommonNewsService, CommonEboardService, CommonAuthService],
+  providers: [
+    CommonService,
+    CommonUserService,
+    CommonEventService, 
+    CommonNewsService, 
+    CommonEboardService, 
+    CommonAuthService, 
+    CommonApplicantService
+    ],
   bootstrap: [AppComponent],
   entryComponents: [EventRegisterModalContent],
   schemas: [ NO_ERRORS_SCHEMA ]
