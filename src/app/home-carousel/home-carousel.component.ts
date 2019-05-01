@@ -6,12 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-carousel.component.css']
 })
 export class HomeCarouselComponent implements OnInit {
-	height: number = 867;
 	width: number = 1920;
+	public innerHeight: any;
   	images = [1, 2, 3].map((currElement,index) => 'src/app/includes/images/home/image' + currElement + '.jpg');
   
   	constructor() { }
 
-  	ngOnInit() {  }
+  	ngOnInit() {  
+			this.innerHeight = window.innerHeight - 55;
+		}
 
 }
