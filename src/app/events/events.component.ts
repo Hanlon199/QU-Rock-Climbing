@@ -18,7 +18,7 @@ export class EventsComponent implements OnInit {
       this.eventList = [];
       resParsed.data.map(e => {
         this.eventList.push(new Event(e._id, e.name, e.description, e.location, e.time, e.date));
-      })
+      });
       this.loading = false;
     })
   }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonNewsService } from '../admin/common.adminNewsService';
+import { News } from '../includes/models/news.model';
 
 @Component({
   selector: 'app-news',
@@ -6,18 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-
-  news: any;
-
-  constructor() { 
-    this.news = [
-      {'title': 'article 1', 'info': 'he climbed whaaaat!', 'link': ''},
-      {'title': 'article 2', 'info': 'Ryan sends his first v9!', 'link': ''},
-      {'title': 'article 3', 'info': 'Kyle still cant climb a v0...', 'link': ''},
-    ];
-  }
+  private newsList: News[];
+  private loading: boolean = true;
+  constructor(private newsService: CommonNewsService) {}
 
   ngOnInit() {
+    this.newsService.getNews().subscribe((res:any) => {
+      let resParsed = JSON.parse(res._body);
+      this.newsList = [];
+      resParsed.data.map(e => {
+        this.newsList.push(new News(e._id, e.name, e.description, e.link));
+      });
+      this.loading = false;
+    })
   }
 
+  onNavigate() {
+    
+  }
 }
