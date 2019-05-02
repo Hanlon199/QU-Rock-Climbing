@@ -4,6 +4,7 @@ export class Event{
 		public name:string,
 		public description:string,
 		public location:string,
-		public time:string
+		public time:string,
+		public date:string
 	){}
 }

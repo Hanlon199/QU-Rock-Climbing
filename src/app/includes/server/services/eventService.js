@@ -14,7 +14,8 @@ class EventsService{
 			"name": event.name,
 			"description" : event.description,
 			"location" : event.location,
-			"time" : event.time
+			"time" : event.time,
+			"date" : event.date
 		}, function(){
 			callback();
 		})
@@ -28,7 +29,8 @@ class EventsService{
 				"name": event.name,
 				"description" : event.description,
 				"location" : event.location,
-				"time" : event.time
+				"time" : event.time,
+				"date" : event.date
 			}
 		}, function(){
 			callback();
