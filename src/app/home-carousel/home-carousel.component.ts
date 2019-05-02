@@ -16,7 +16,7 @@ export class HomeCarouselComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {  
-		this.innerHeight = window.innerHeight - 55;
+		this.innerHeight = window.innerHeight - 100;
 		this.innerWidth = window.innerWidth;
 		this.introText = window.innerHeight - 200;
 	}
