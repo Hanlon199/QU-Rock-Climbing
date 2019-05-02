@@ -27,6 +27,7 @@ const newsRoutes = require('../routes/news.route');
 const eboardRoutes = require('../routes/eboard.route');
 const applicantRoutes = require('../routes/applicant.route');
 const authRoutes = require('../routes/auth.route')
+const attendentsRoutes = require('../routes/eventAttendent.route');
 
 //APP
 const app = express();
@@ -39,8 +40,10 @@ app.use("/api/Event",eventRoutes);
 app.use("/api/News",newsRoutes);
 app.use("/api/Eboard",eboardRoutes);
 app.use("/api/Auth",authRoutes);
+app.use('/api/Attendent', attendentsRoutes);
 
 /// LISTEN TO MEEEE GOOOOO
 app.listen(3000, ()=>{
 	console.log('Roger that Raggy ristening on port 3000');
+	console.log('Like Scoob, we connected man, I sure do hope we get a sccooby snak for this one pal!')
 })
