@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 ////////////////////////////////////////////////
 // Applicant
 ////////////////////////////////////////////////
-router.put("", (req,res)=>{
+router.post("", (req,res)=>{
 	let applicantServiceObj = new ApplicantService(req,res);
 	applicantServiceObj.addApplicant();
 });
