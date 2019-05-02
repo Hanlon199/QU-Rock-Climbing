@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home-carousel',
@@ -9,13 +9,19 @@ export class HomeCarouselComponent implements OnInit {
 	width: number = 1920;
 	public innerWidth: any;
 	public innerHeight: any;
-  	images = [1, 2, 3].map((currElement,index) => 'src/app/includes/images/home/image' + currElement + '.jpg');
-  
-  	constructor() { }
+	images = [1, 2, 3].map((currElement,index) => 'src/app/includes/images/home/image' + currElement + '.jpg');
 
-  	ngOnInit() {  
-			this.innerHeight = window.innerHeight - 55;
-			this.innerWidth = window.innerWidth;
-		}
+	constructor() { }
+
+	ngOnInit() {  
+		this.innerHeight = window.innerHeight - 55;
+		this.innerWidth = window.innerWidth;
+	}
+
+	@HostListener('window:resize', ['$event'])
+	onresize(event) {
+		this.innerWidth = window.innerWidth;
+		this.innerHeight = window.innerHeight;
+	}
 
 }

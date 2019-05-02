@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  joinUsImg = 'src/app/includes/home/joeGang.JPG';
+
   constructor() { }
 
   ngOnInit() {
