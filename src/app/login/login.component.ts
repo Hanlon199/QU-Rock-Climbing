@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as jwt from 'jsonwebtoken';
-import { decode } from 'punycode';
-import {CommonAuthService} from './common.loginAuthService';
-
+import { CommonAuthService } from './common.loginAuthService';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +10,28 @@ import {CommonAuthService} from './common.loginAuthService';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authSerivce: CommonAuthService, private router: Router) { }
+  private newLogin: any = [];
+
+  constructor(private authService: CommonAuthService, public router: Router, public jwtHelper: JwtHelperService) { }
 
   ngOnInit() {
   }
 
   loginUser(e) {
-    var username = e.target.elements[0].value;
-    var password = e.target.elements[1].value;
-    console.log(username, password);
+    this.newLogin.username = e.target.elements[0].value;
+    this.newLogin.password = e.target.elements[1].value;
 
-    // if (username == 'qurockclimbing@gmail.com' && password == 'sendsonly203') {
-    //   this.router.navigate(['admin']);
-    // }
-    var token = jwt.sign({ username: e.target.elements[0].value, password: e.target.elements[1].value }, '8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb');
-    console.log(token);
-    var decoded = jwt.decode(token);
+    this.authService.compareUsername(this.newLogin).subscribe((res: any) => {
+      var info = JSON.parse(res._body);
+      if (info.status == "success") {
+        sessionStorage.setItem('SESSIONID', info.token);
+        this.router.navigate(['admin']);
+      } else if (info.status == "fail") {
+        alert("Incorrecto");
+      }
+      this.authService.add_subject.next();
+    })
   }
-  
+
 
 }

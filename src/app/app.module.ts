@@ -3,7 +3,7 @@ import { NgModule,NO_ERRORS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,8 +22,9 @@ import { TestUserComponent } from './test-user/test-user.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PendingComponent } from './pending/pending.component'
 import {MainPipe} from './includes/pipe/main-pipe'
-
+import { JwtModule } from '@auth0/angular-jwt';
 //services
+import { AuthGuardService as AuthGuard, AuthGuardService } from './auth-guard';
 import {CommonService} from './common.service';
 import {CommonUserService} from './admin/common.adminUserService'
 import {CommonEventService} from './admin/common.adminEventService'
@@ -41,7 +42,7 @@ const appRoutes:Routes =[
   {path: 'news',component: NewsComponent},
   {path: 'eboard',component: EboardComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'admin',component: AdminComponent},
+  {path: 'admin',component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'apply',component: ApplyComponent},
   {path: 'pending',component: PendingComponent},
   {path: 'sign-up',component: SignUpComponent},
@@ -77,7 +78,15 @@ const appRoutes:Routes =[
     RouterModule.forRoot(appRoutes),
     MDBBootstrapModule.forRoot(),
     NgbModule,
-    MainPipe
+    MainPipe,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('SESSIONID');
+        },
+        whitelistedDomains: ['localhost:4200', 'localhost:3000']
+      }
+    })
   ],
   providers: [
     CommonService,
@@ -86,7 +95,8 @@ const appRoutes:Routes =[
     CommonNewsService, 
     CommonEboardService, 
     CommonAuthService, 
-    CommonApplicantService
+    CommonApplicantService,
+    AuthGuardService
     ],
   bootstrap: [AppComponent],
   entryComponents: [EventRegisterModalContent],

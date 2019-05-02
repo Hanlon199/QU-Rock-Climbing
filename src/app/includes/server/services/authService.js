@@ -163,7 +163,7 @@ class authService {
                                 })
                             } else if (res == false) {
                                 return self.res.status(200).json({
-                                    status: "false",
+                                    status: "fail",
                                     msg: "incorrecto passwordo"
                                 })
                             }

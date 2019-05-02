@@ -14,8 +14,12 @@ export class CommonAuthService {
         this.authList = [];
     }
 
-    getUsername() {
-        return this.http.get('/api/Auth', {})
+    getPendingUsername() {
+        return this.http.get('/api/Auth/pending', {})
+    }
+
+    getAllUsername() {
+        return this.http.get('/api/Auth/all', {})
     }
 
     addUsername(username) {
