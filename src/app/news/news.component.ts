@@ -17,7 +17,8 @@ export class NewsComponent implements OnInit {
       let resParsed = JSON.parse(res._body);
       this.newsList = [];
       resParsed.data.map(e => {
-        this.newsList.push(new News(e._id, e.name, e.description, e.link));
+        let link = e.link.includes("http://") ? e.link : "http://" + e.link;
+        this.newsList.push(new News(e._id, e.name, e.description, link));
       });
       this.loading = false;
     })

@@ -1,5 +1,10 @@
 <div class="container" style="margin-top: 25px;">
-	<ngb-tabset>
+	<div class="row">
+		<div *ngIf="loading" style="margin: auto !important;">
+			<img src="src/app/includes/images/loading.gif">
+		</div>	
+	</div>
+	<ngb-tabset *ngIf="!loading">
 	  <!--  
 		/////////////////////
 		Gen MEMBERS
@@ -14,9 +19,9 @@
 					<div class="row">
 						<div *ngIf="loading" style="margin: auto !important;">
 							<img src="src/app/includes/images/loading.gif">
-						</div>	
+						</div>
 					</div>
-					<table class="table table-bordered" *ngIf="!loading" style="margin-top: 25px;">
+					<table class="table table-bordered" *ngIf="!loading && applicants.length > 0" style="margin-top: 25px;">
 						<thead class="thead-dark">
 							<tr style="text-align: center">
 								<th>Name</th>
@@ -40,6 +45,9 @@
 							</td>
 						</tr>
 					</table>
+					<div *ngIf="applicants.length == 0" class="alert alert-info" style="margin-top: 25px;">
+						<h4>No Pending Members</h4>
+					</div>
 				</div>
 	      </ng-template>
 	    </ngb-tab>
@@ -59,7 +67,7 @@
 							<img src="src/app/includes/images/loading.gif">
 						</div>	
 					</div>
-					<table class="table table-bordered" *ngIf="!loading" style="margin-top: 25px;">
+					<table class="table table-bordered" *ngIf="!loading && adminApps.length > 0" style="margin-top: 25px;">
 						<thead class="thead-dark">
 							<tr style="text-align: center">
 								<th>Name</th>
@@ -74,7 +82,11 @@
 								<button class="btn btn-danger btn-small" (click)="deny(id, 'admin')" style="width: 150px;">Deny <span *ngIf="loadingButton && loadingButtonID == id"><img height="25" width="25" src="src/app/includes/images/loadingSmall.gif"></span></button>
 							</td>
 						</tr>
+
 					</table>
+					<div *ngIf="adminApps.length == 0" class="alert alert-info" style="margin-top: 25px;">
+						<h4>No Pending Admin Users</h4>
+					</div>
 				</div>
 	      </ng-template>
 	    </ngb-tab>
