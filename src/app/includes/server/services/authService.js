@@ -11,7 +11,8 @@ class authService {
         this.req = req;
         this.res = res;
     }
-    getUsername() {
+
+    getPendingUsername() {
         let self = this;
         try {
             MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
@@ -20,6 +21,35 @@ class authService {
                 let auth = [];
                 let cursor = db.collection('auth').find({
                     status: 'pending',
+                });
+                cursor.each((err, doc) => {
+                    assert.equal(err, null);
+                    if (doc != null) { auth.push(doc) }
+                    else {
+                        return self.res.status(200).json({
+                            status: "success",
+                            data: auth
+                        });
+                    }
+                });
+            });
+        }
+        catch (error) {
+            return self.res.status(500).json({
+                status: "error",
+                error: error
+            });
+        }
+    }
+
+    getAllUsername() {
+        let self = this;
+        try {
+            MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+                var db = client.db('ClimbingClubDB')
+                assert.equal(null, err);
+                let auth = [];
+                let cursor = db.collection('auth').find({
                 });
                 cursor.each((err, doc) => {
                     assert.equal(err, null);
