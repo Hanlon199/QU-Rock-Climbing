@@ -9,6 +9,8 @@ export class HomeCarouselComponent implements OnInit {
 	width: number = 1920;
 	public innerWidth: any;
 	public innerHeight: any;
+
+	public introText:any;
 	images = [1, 2, 3].map((currElement,index) => 'src/app/includes/images/home/image' + currElement + '.jpg');
 
 	constructor() { }
@@ -16,6 +18,7 @@ export class HomeCarouselComponent implements OnInit {
 	ngOnInit() {  
 		this.innerHeight = window.innerHeight - 55;
 		this.innerWidth = window.innerWidth;
+		this.introText = window.innerHeight - 200;
 	}
 
 	@HostListener('window:resize', ['$event'])

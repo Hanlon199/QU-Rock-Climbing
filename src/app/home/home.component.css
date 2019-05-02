@@ -3,9 +3,25 @@
 }
 
 .infoBox {
-	background-image: 'src/app/includes/home/image1.JPG'
+	display: block;
+	position: absolute;
+	text-align: center;
+	opacity: 1;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .infoBoxContent {
+	position: absolute;
+	top: 40%;
+	width: 100%;
+	text-align: center;
+}
 
+.infoText {
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	text-shadow: 2px #000;
+	font-size: 50px;
 }
