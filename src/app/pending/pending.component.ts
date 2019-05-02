@@ -30,7 +30,7 @@ export class PendingComponent implements OnInit {
 				})
 			});
 
-      this.authService.getUsername().subscribe((res:any)=>{
+      this.authService.getPendingUsername().subscribe((res:any)=>{
         let resParsed = JSON.parse(res._body);
         this.adminApps = [];
         resParsed.data.map(e=>{
