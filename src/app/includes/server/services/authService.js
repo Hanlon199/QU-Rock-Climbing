@@ -151,8 +151,8 @@ class authService {
                             msg: "That user does not exist"
                         });
                     } else {
-                        console.log(password)
-                        console.log(auth[0].password)
+                        // console.log(password)
+                        // console.log(auth[0].password)
                         bcrypt.compare(password, auth[0].password, function (err, res) {
                             if (res == true) {
                                 const token = jwt.sign({data: auth[0].username}, "tg9IjkgX96", {
