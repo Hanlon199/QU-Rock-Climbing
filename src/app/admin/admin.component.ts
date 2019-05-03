@@ -5,6 +5,7 @@ import {CommonEventService} from './common.adminEventService';
 import {CommonNewsService} from './common.adminNewsService';
 import {CommonEboardService} from './common.adminEboardService';
 import {CommonApplicantService} from '../apply/common.applicantService';
+import {CommonAuthService} from '../login/common.loginAuthService';
 import {Http,Response, Headers, RequestOptions} from '../../../node_modules/@angular/http';
 import {User} from '../includes/models/user.model';
 import {Event} from '../includes/models/event.model';
@@ -50,7 +51,8 @@ export class AdminComponent implements OnInit {
 	private selectedFile:File = null;
 	private pendingAppCount:number = 0;
 	constructor(private userService:CommonUserService, private eventService: CommonEventService, private newsService:CommonNewsService, 
-		private eboardService: CommonEboardService, private http:HttpClient, private applicantService:CommonApplicantService) {}
+		private eboardService: CommonEboardService, private http:HttpClient, 
+		private applicantService:CommonApplicantService, private authService:CommonAuthService  ) {}
 		
   	ngOnInit() {
   		this.getAll()
@@ -66,13 +68,11 @@ export class AdminComponent implements OnInit {
 			case "members":
 				this.userService.getUser().subscribe((res:any) =>{	
 					let resParsed = JSON.parse(res._body);
-					// console.log("RES: ", resParsed.data);
 					this.userList = [];
 					resParsed.data.map(e=>{
 						this.userList.push(new User(e._id,e.name,e.email,e.year,e.belayCertified,e.position,e.isAdmin));
 					})
 					this.loading = false;
-					// console.log("USER LIST: ", this.userList)
 				})
 				break;
 			case "events":
@@ -324,11 +324,17 @@ export class AdminComponent implements OnInit {
 	}
 
 	getPendingAppCount(){
-		this.applicantService.getApplicants()
-			.subscribe((res:any) =>{	
-				let resParsed = JSON.parse(res._body);
-				this.pendingAppCount = resParsed.data.length;
+		let tempCount = 0;
+		this.applicantService.getApplicants().subscribe((res:any) =>{	
+			let resParsed = JSON.parse(res._body);
+			tempCount += resParsed.data.length;
+			
+			this.authService.getPendingUsername().subscribe((res:any)=>{
+					let resParsed = JSON.parse(res._body);
+					tempCount += resParsed.data.length;
+					this.pendingAppCount = tempCount;
 			})
+		})
 	}
 
 }	

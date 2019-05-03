@@ -18,8 +18,8 @@ export class SignUpComponent implements OnInit {
   		this.newAdmin.status = 'pending';
   		this.authService.addUsername(this.newAdmin).subscribe((res:any)=>{
   			this.authService.add_subject.next();
+        this.newAdmin = [];
   		})
-  		console.log(this.newAdmin)
   	}
 
 }
