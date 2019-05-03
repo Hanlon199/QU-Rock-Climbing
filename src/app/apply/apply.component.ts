@@ -22,7 +22,8 @@ export class ApplyComponent implements OnInit {
 			this.applicant = [];
 			
 			this.router.navigate(['/home'])
-  	}
+			alert("Successful application");
+		}
 
 
 }

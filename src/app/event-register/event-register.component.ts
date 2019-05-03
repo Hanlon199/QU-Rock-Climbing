@@ -43,6 +43,7 @@ export class EventRegisterComponent implements OnInit {
 			
 		})
 		this.router.navigate(['/home'])
+		alert("Successful Registration");
 	}
 
 
