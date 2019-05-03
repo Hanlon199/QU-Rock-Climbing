@@ -33,6 +33,7 @@ import {CommonEboardService} from './admin/common.adminEboardService'
 import {CommonAuthService} from './login/common.loginAuthService'
 import {CommonApplicantService} from './apply/common.applicantService';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { UtilityService } from './utility.service';
 
 //constant to contain all routes
 const appRoutes:Routes =[
@@ -96,7 +97,8 @@ const appRoutes:Routes =[
     CommonEboardService, 
     CommonAuthService, 
     CommonApplicantService,
-    AuthGuardService
+    AuthGuardService,
+    UtilityService
     ],
   bootstrap: [AppComponent],
   entryComponents: [EventRegisterModalContent],

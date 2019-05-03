@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.picHeight = window.innerHeight - 350;
-
+    this.picWidth = window.innerWidth - 1125;
   }
 
 }

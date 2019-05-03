@@ -23,9 +23,21 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" [routerLink]="['apply']" href="apply">Apply for Membership</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['login']" href="login">Admin Login</a>
+      <li *ngIf = "this.utilityService.loggedIn" class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['admin']" href="admin">Admin Page</a>
       </li>
     </ul>
+    <div *ngIf = "this.utilityService.loggedIn" class="nav navbar-nav navbar-right">
+      <button type="button" class="btn btn-primary navbar-btn" (click)='logout()' [routerLink]="['home']" href="home">
+        <span class="glyphicon glyphicon-plus"></span>
+        Logout
+      </button>
+    </div>
+    <div *ngIf = "!this.utilityService.loggedIn" class="nav navbar-nav navbar-right">
+      <button type="button" class="btn btn-primary navbar-btn" [routerLink]="['login']" href="login">
+        <span class="glyphicon glyphicon-plus"></span>
+        Admin Login
+      </button>
+    </div>
   </div>
 </navbar>
