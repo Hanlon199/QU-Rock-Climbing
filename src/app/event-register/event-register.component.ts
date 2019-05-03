@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonUserService} from '../admin/common.adminUserService';
 import {CommonEventAttendService} from 'src/app/event-register/common.eventAttendService';
-import {User} from '../includes/models/user.model.ts';
+import {User} from '../includes/models/user.model';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({
