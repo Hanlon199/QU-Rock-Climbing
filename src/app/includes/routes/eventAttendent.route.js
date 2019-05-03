@@ -20,4 +20,14 @@ router.get('', (req, res) => {
     eventAttendentServiceObj.getAttendents();
 });
 
+router.get('/eventAttends', (req, res) => {
+    let eventAttendentServiceObj = new EventAttendentService(req, res);
+    eventAttendentServiceObj.getEventAttendents();
+});
+
+router.post('/detail', (req, res) => {
+    let eventAttendentServiceObj = new EventAttendentService(req, res);
+    eventAttendentServiceObj.getDetailAttendents();
+});
+
 module.exports = router;

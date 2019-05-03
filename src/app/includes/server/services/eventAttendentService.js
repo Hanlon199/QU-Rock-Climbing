@@ -14,7 +14,6 @@ class EventAttendentService{
 			"eventId": user.eventId,
 			"memberId": user.memberId,
 			"name": user.name,
-			"member": user.member,
 			"belayCert": user.belayCert,
 			"driver": user.driver
 		}, function(){
@@ -57,8 +56,39 @@ class EventAttendentService{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				let attendents = [];
-				let cursor = db.collection('eventAttend').find();
+				let cursor = db.collection('events').find();
 
+				cursor.each((err,doc)=>{
+					assert.equal(err,null);
+					if (doc != null) {attendents.push(doc)}
+					else{
+						return self.res.status(200).json({
+							status:"success",
+							data:attendents
+						});
+					}
+				});
+			});
+		}
+		catch(error){
+			return self.res.status(500).json({
+				status:"error",
+				error:error
+			});
+		}
+	}
+
+	getDetailAttendents(){
+		try{
+			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
+				var db = client.db('ClimbingClubDB')
+				assert.equal(null,err);
+				let self = this;
+				let eventId = this.req.body.data.id;
+				let attendents = [];
+				let cursor = db.collection('eventAttend').find({
+					eventId: eventId
+				});
 				cursor.each((err,doc)=>{
 					assert.equal(err,null);
 					if (doc != null) {attendents.push(doc)}

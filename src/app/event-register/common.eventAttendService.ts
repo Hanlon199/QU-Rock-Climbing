@@ -36,6 +36,13 @@ export class CommonEventAttendService{
 		return this.http.get('/api/Attendent', {})
 	}
 
+	getDetailEvent(id){
+		return this.http.post('/api/Attendent/detail', 
+			{"data":
+				{"id":id}
+			});
+	}
+
 	editEvent(event){
 		return this.http.post('/api/Attendent', 
 		{"event":

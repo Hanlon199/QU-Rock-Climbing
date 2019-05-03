@@ -117,18 +117,21 @@ export class AdminComponent implements OnInit {
 			case "members":
 				this.userService.addUser(this.user).subscribe(res=>{
 					this.userService.add_subject.next();
+					this.getAll();
 				});
 				this.user = [];
 				break;
 			case "events":
 				this.eventService.addEvent(this.events).subscribe(res=>{
 					this.eventService.add_subject.next();
+					this.getAll();
 				});
 				this.events = [];
 				break;
 			case "news":
 				this.newsService.addNews(this.news).subscribe(res=>{
 					this.newsService.add_subject.next();
+					this.getAll();
 				});
 				this.news = [];
 				break;
@@ -148,6 +151,7 @@ export class AdminComponent implements OnInit {
 						// }else if(event.type == HttpEventType.Response){
 						// 	console.log("Image Upload");
 						// }
+						this.getAll();
 					})
 					this.eboard = [];
 					this.selectedFile = null;
@@ -168,8 +172,8 @@ export class AdminComponent implements OnInit {
 				if (action) {
 					this.userService.removeUser(id).subscribe(res=>{
 						this.userService.add_subject.next();
+						this.getAll();
 				});
-				this.getAll();
 				}
 				break;
 			case "events":
@@ -177,8 +181,8 @@ export class AdminComponent implements OnInit {
 				if (action2) {
 					this.eventService.removeEvent(id).subscribe(res=>{
 						this.eventService.add_subject.next();
+						this.getAll();
 				});
-				this.getAll();
 				}
 				break;
 			case "news":
@@ -186,8 +190,8 @@ export class AdminComponent implements OnInit {
 				if (action3) {
 					this.newsService.removeNews(id).subscribe(res => {
 						this.newsService.add_subject.next();
+						this.getAll();
 					});
-					this.getAll();
 				}
 				break;
 			case "eboard":
@@ -195,8 +199,8 @@ export class AdminComponent implements OnInit {
 				if (action4) {
 					this.eboardService.removeEboard(id).subscribe(res=>{
 						this.eboardService.add_subject.next();
+						this.getAll();
 				});
-				this.getAll();
 				}
 				break;
 		}
