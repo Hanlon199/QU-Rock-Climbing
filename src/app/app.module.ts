@@ -46,8 +46,9 @@ const appRoutes:Routes =[
   {path: 'login', component: LoginComponent},
   {path: 'admin',component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'apply',component: ApplyComponent},
-  {path: 'pending',component: PendingComponent, canActivate: [AuthGuard]},
   {path: 'event-attendent-list', component: EventAttendentListComponent, canActivate: [AuthGuard]},
+  // {path: 'pending',component: PendingComponent, canActivate: [AuthGuard]},
+  {path: 'admin/pending',component: PendingComponent, canActivate: [AuthGuard]},
   {path: 'sign-up',component: SignUpComponent},
   {path: 'test',component: TestUserComponent}
 ];

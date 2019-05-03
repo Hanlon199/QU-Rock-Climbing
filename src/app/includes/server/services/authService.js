@@ -151,6 +151,8 @@ class authService {
                             msg: "That user does not exist"
                         });
                     } else {
+                        console.log(password)
+                        console.log(auth[0].password)
                         bcrypt.compare(password, auth[0].password, function (err, res) {
                             if (res == true) {
                                 const token = jwt.sign({data: auth[0].username}, "tg9IjkgX96", {
@@ -229,24 +231,17 @@ class authService {
     }
 
     edit(user,db,callback){
-        var temp = "";
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                if (err) throw err;
-                temp = hash;
-                db.collection('auth').update(
-                    {"_id": ObjectID(user.id)},
-                    {
-                        $set:{
-                            "username": user.username,
-                            "password" :temp,
-                            "status" :user.status
-                        }
-                    }, function(){
-                        callback();
-                    })
-            });
-        });
+        db.collection('auth').update(
+            {"_id": ObjectID(user.id)},
+            {
+                $set:{
+                    "username": user.username,
+                    "password" :user.password,
+                    "status" :user.status
+                }
+            }, function(){
+                callback();
+            })
 	}
 }
 
