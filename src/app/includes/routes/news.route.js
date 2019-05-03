@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 ////////////////////////////////////////////////
 // News
 ////////////////////////////////////////////////
-router.put("", (req, res) => {
+router.post("", (req, res) => {
 	let newsServiceObj = new newsService(req, res);
 	newsServiceObj.editNews();
 });
@@ -16,7 +16,7 @@ router.delete("/:id", (req, res) => {
 	newsServiceObj.removeNews();
 });
 
-router.post("", (req, res) => {
+router.put("", (req, res) => {
 	let newsServiceObj = new newsService(req, res);
 	newsServiceObj.addNews();
 });

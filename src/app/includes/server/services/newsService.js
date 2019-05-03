@@ -93,7 +93,6 @@ class NewsService {
     editNews(){
 		let self = this;
         let news = this.req.body.news;
-        console.log("Daddy punish me", news)
 		try{
 			MongoClient.connect(url, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

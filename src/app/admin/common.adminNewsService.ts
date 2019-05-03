@@ -21,7 +21,7 @@ export class CommonNewsService{
 			{
 			"name":news.name,
 			"description":news.description,
-			"link":news.location
+			"link":news.link
 			}
 		});
 	}
