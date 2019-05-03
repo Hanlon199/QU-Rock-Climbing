@@ -45,7 +45,7 @@ const appRoutes:Routes =[
   {path: 'login', component: LoginComponent},
   {path: 'admin',component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'apply',component: ApplyComponent},
-  {path: 'pending',component: PendingComponent},
+  {path: 'pending',component: PendingComponent, canActivate: [AuthGuard]},
   {path: 'sign-up',component: SignUpComponent},
   {path: 'test',component: TestUserComponent}
 ];
