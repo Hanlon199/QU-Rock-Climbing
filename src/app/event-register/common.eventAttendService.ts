@@ -43,6 +43,7 @@ export class CommonEventAttendService{
 	}
 
 	editEvent(event){
+		console.log(event)
 		return this.http.post('/api/Attendent', 
 		{"event":
 			{

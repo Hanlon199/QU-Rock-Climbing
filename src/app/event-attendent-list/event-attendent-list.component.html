@@ -4,25 +4,27 @@
       <img src="src/app/includes/images/loading.gif">
     </div>
   </div>
-  <h4>Events</h4>
-  <table border="1" class="table table-bordered table-hover" *ngIf="!loading">
-  	<thead class="thead-dark">
-	    <tr>
-	    	<th>Event</th>
-	    	<th>Description</th>
-	    	<th>Location</th>
-	    	<th>Date</th>
-	    	<th>Time</th>
+  <div *ngIf="!loading">
+  	<h4>Events</h4>
+	  <table border="1" class="table table-bordered table-hover" *ngIf="!loading">
+	  	<thead class="thead-dark">
+		    <tr>
+		    	<th>Event</th>
+		    	<th>Description</th>
+		    	<th>Location</th>
+		    	<th>Date</th>
+		    	<th>Time</th>
+		    </tr>
+	  	</thead>
+	   	<tr *ngFor="let event of events" (click)="loadDetail(event._id)">
+	    	<td>{{event.name}}</td>
+	    	<td>{{event.description}}</td>
+	    	<td>{{event.location}}</td>
+	    	<td>{{event.date}}</td>
+	    	<td>{{event.time}}</td>
 	    </tr>
-  	</thead>
-   	<tr *ngFor="let event of events" (click)="loadDetail(event._id)">
-    	<td>{{event.name}}</td>
-    	<td>{{event.description}}</td>
-    	<td>{{event.location}}</td>
-    	<td>{{event.date}}</td>
-    	<td>{{event.time}}</td>
-    </tr>
-  </table>
+	  </table>
+  </div>
   <div class="row" style="margin-top: 50px;">
     <div *ngIf="loading2" style="margin: auto !important;">
       <img src="src/app/includes/images/loadingSmall.gif">

@@ -27,7 +27,7 @@ export class CommonEboardService{
 	}
 
 	editEboard(user){
-		// console.log("COMMON SERVICE EDIT: " , user)
+		console.log("COMMON SERVICE EDIT: " , user)
 		return this.http.post('/api/Eboard', 
 		{
 		"eboard":
