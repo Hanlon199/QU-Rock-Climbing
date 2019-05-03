@@ -23,7 +23,7 @@ export class CommonAuthService {
     }
     
     addUsername(username) {
-        return this.http.put('/api/Auth',
+        return this.http.put('/api/Auth/add',
             {
                 "user":
                 {
@@ -45,7 +45,7 @@ export class CommonAuthService {
     }
 
     editAdmin(username) {
-        console.log("COMMON: " ,username)
+        // console.log("COMMON: " ,username)
         return this.http.post('/api/Auth',
             {
                 "user":
