@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "@auth0/angular-jwt": "^1.0.0-beta.11",
+    "@auth0/angular-jwt": "^1.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.2",
     "@nguniversal/express-engine": "^7.1.1",
     "@types/node": "^8.10.45",
