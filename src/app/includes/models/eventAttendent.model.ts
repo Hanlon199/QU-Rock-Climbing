@@ -1,7 +1,8 @@
-export class eventAttendent{
+export class EventAttendent{
     constructor(
         public _id: any,
-        public _eventId: any,
+        public eventId: any,
+        public memberId: any,
         public name: string,
         public member: string,
         public belayCert: string,

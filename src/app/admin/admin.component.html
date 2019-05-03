@@ -4,7 +4,7 @@
         class="fas fa-file-excel"></i></button>
 
     <a [routerLink]="['pending']" class="btn btn-small btn-primary" >View Pending Applicants <span class="badge badge-danger ml-2" *ngIf="pendingAppCount != 0">{{pendingAppCount}}</span></a>
-    <a href="/event-attendent-list" class="btn btn-small btn-primary" >attendents events <span class="badge badge-danger ml-2"></span></a>
+    <a [routerLink]="['event-attendent-list']" class="btn btn-small btn-primary" >attendents events <span class="badge badge-danger ml-2"></span></a>
 
   </div>
 

@@ -5,7 +5,7 @@ const EventAttendentService = require('../server/services/eventAttendentService'
 ////////////////////////////////////////////////
 // EVENT ATTENDENTS
 ////////////////////////////////////////////////
-router.post('', (req, res) => {
+router.put('', (req, res) => {
     let eventAttendentServiceObj = new EventAttendentService(req, res);
     eventAttendentServiceObj.addAttendents();
 });

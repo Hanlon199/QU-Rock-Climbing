@@ -10,25 +10,26 @@ class EventAttendentService{
 	}
 
 	insert(user, db, callback){
-		db.collection('eventAttendent').insertOne({
-			"_eventId": user._eventId,
+		db.collection('eventAttend').insertOne({
+			"eventId": user.eventId,
+			"memberId": user.memberId,
 			"name": user.name,
-			"member" : user.member,
-			"belayCert" : user.belayCert,
-			"driver" : user.driver
+			"member": user.member,
+			"belayCert": user.belayCert,
+			"driver": user.driver
 		}, function(){
 			callback();
 		})
 	}
 
 	remove(id, db, callback){
-		db.collection('eventAttendent').deleteOne({"_id":ObjectID(id)});
+		db.collection('eventAttend').deleteOne({"_id":ObjectID(id)});
 	}
 
 	//
 	addAttendents(){
 		let self = this;
-		let attendent = this.req.body.applicant;
+		let attendent = this.req.body.eventAttend;
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')
@@ -56,7 +57,7 @@ class EventAttendentService{
 				var db = client.db('ClimbingClubDB')
 				assert.equal(null,err);
 				let attendents = [];
-				let cursor = db.collection('eventAttendent').find();
+				let cursor = db.collection('eventAttend').find();
 
 				cursor.each((err,doc)=>{
 					assert.equal(err,null);

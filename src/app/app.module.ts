@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { EventsComponent } from './events/events.component';
-import { EventRegisterModalComponent, EventRegisterModalContent } from './event-register-modal/event-register-modal.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './news/news.component';
 import { EboardComponent } from './eboard/eboard.component';
@@ -21,7 +20,9 @@ import { LoginComponent } from './login/login.component';
 import { TestUserComponent } from './test-user/test-user.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PendingComponent } from './pending/pending.component'
+import { EventRegisterComponent } from './event-register/event-register.component';
 import { EventAttendentListComponent } from './event-attendent-list/event-attendent-list.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import {MainPipe} from './includes/pipe/main-pipe'
 import { JwtModule } from '@auth0/angular-jwt';
 //services
@@ -33,7 +34,7 @@ import {CommonNewsService} from './admin/common.adminNewsService'
 import {CommonEboardService} from './admin/common.adminEboardService'
 import {CommonAuthService} from './login/common.loginAuthService'
 import {CommonApplicantService} from './apply/common.applicantService';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import {CommonEventAttendService} from './event-register/common.eventAttendService';
 import { UtilityService } from './utility.service';
 
 //constant to contain all routes
@@ -47,6 +48,7 @@ const appRoutes:Routes =[
   {path: 'admin',component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'apply',component: ApplyComponent},
   {path: 'event-attendent-list', component: EventAttendentListComponent, canActivate: [AuthGuard]},
+  {path: 'event-register/:id', component: EventRegisterComponent},
   // {path: 'pending',component: PendingComponent, canActivate: [AuthGuard]},
   {path: 'admin/pending',component: PendingComponent, canActivate: [AuthGuard]},
   {path: 'sign-up',component: SignUpComponent},
@@ -69,11 +71,10 @@ const appRoutes:Routes =[
     HomeCarouselComponent,
     LoginComponent,
     TestUserComponent,
-    EventRegisterModalComponent,
-    EventRegisterModalContent,
     PendingComponent,
     SignUpComponent,
-    EventAttendentListComponent
+    EventAttendentListComponent,
+    EventRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -102,10 +103,10 @@ const appRoutes:Routes =[
     CommonAuthService, 
     CommonApplicantService,
     AuthGuardService,
+    CommonEventAttendService,
     UtilityService
     ],
   bootstrap: [AppComponent],
-  entryComponents: [EventRegisterModalContent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
