@@ -45,7 +45,7 @@ export class CommonAuthService {
     }
 
     editAdmin(username) {
-        // console.log("COMMON: " ,username)
+        console.log("COMMON: " ,username)
         return this.http.post('/api/Auth',
             {
                 "user":

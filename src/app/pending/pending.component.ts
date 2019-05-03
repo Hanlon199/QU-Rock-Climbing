@@ -28,6 +28,7 @@ export class PendingComponent implements OnInit {
 				resParsed.data.map(e=>{
 					this.applicants.push(new Applicant(e._id,e.name,e.email,e.year,e.belayCertified,'member',e.reasoning));
 				})
+				 this.loading = false;
 			});
 
       this.authService.getPendingUsername().subscribe((res:any)=>{
@@ -36,19 +37,20 @@ export class PendingComponent implements OnInit {
         resParsed.data.map(e=>{
           this.adminApps.push(new Auth(e._id,e.username,e.password,e.status));
         })
-				this.loading = false;
       })
   	}
   	approve(index,type){
   		this.loadingButton = true;
   		this.loadingButtonID = index;
-  		this.applicants[index]["isAdmin"] = false;
       if (type =='member') {
+  		  this.applicants[index]["isAdmin"] = false;
     		this.userService.addUser(this.applicants[index]).subscribe(res=>{this.userService.add_subject.next();});
     		this.applicantService.removeApplicant(this.applicants[index]._id).subscribe(res=>{this.applicantService.add_subject.next();});
       }else{
         this.authService.editAdmin(this.adminApps[index]).subscribe((res:any)=>{this.authService.add_subject.next();});
       }
+      this.applicants = [];
+      this.adminApps = [];
 		  this.load();
 		  this.loadingButton = false;
   		this.loadingButtonID = -1;

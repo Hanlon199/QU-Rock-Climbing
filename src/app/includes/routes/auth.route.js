@@ -16,7 +16,7 @@ router.get("/all", (req, res) => {
 	authServiceObj.getAllUsername();
 });
 
-router.post("/add", (req, res) => {
+router.put("/add", (req, res) => {
 	let authServiceObj = new authService(req, res);
 	authServiceObj.addUsername();
 });
@@ -26,7 +26,7 @@ router.post("/check", (req, res) => {
 	authServiceObj.compareUsername();
 });
 
-router.put("", (req, res) => {
+router.post("", (req, res) => {
 	let authServiceObj = new authService(req, res);
 	authServiceObj.updateUser();
 });
