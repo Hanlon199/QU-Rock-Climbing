@@ -17,7 +17,7 @@ export class CommonApplicantService{
 
 	addApplicant(applicant){
 		// console.log("COMMON APP ADD: ", applicant)
-		return this.http.put('/api/Applicant', 
+		return this.http.post('/api/Applicant', 
 		{"applicant":
 			{
 			"name":applicant.name,
