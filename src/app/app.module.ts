@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { TestUserComponent } from './test-user/test-user.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PendingComponent } from './pending/pending.component'
+import { EventAttendentListComponent } from './event-attendent-list/event-attendent-list.component';
 import {MainPipe} from './includes/pipe/main-pipe'
 import { JwtModule } from '@auth0/angular-jwt';
 //services
@@ -46,6 +47,7 @@ const appRoutes:Routes =[
   {path: 'admin',component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'apply',component: ApplyComponent},
   {path: 'pending',component: PendingComponent, canActivate: [AuthGuard]},
+  {path: 'event-attendent-list', component: EventAttendentListComponent, canActivate: [AuthGuard]},
   {path: 'sign-up',component: SignUpComponent},
   {path: 'test',component: TestUserComponent}
 ];
@@ -69,7 +71,8 @@ const appRoutes:Routes =[
     EventRegisterModalComponent,
     EventRegisterModalContent,
     PendingComponent,
-    SignUpComponent
+    SignUpComponent,
+    EventAttendentListComponent
   ],
   imports: [
     BrowserModule,

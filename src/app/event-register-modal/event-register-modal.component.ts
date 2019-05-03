@@ -35,11 +35,6 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
         <label class="radio-inline" style="padding-left:10px;"><input type="checkbox" value="">No</label>
       </div>
       <div>
-        <label for="doyouqu">DoYouQU</label>
-        <label for="waiver" style="padding-left:40px;">Waiver</label>
-        <br>
-        <button class="btn btn-secondary" style="margin-left:1%" onclick="location.href='https://qu.campuslabs.com/engage/'">Link</button>
-        <button class="btn btn-secondary" style="margin-left:10%" onclick="location.href='https://www.primeclimb.com/'">Link</button>
         <button type="submit" class="btn btn-primary" style="float:right">Submit</button>
       </div>
     </form>
