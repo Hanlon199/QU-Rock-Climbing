@@ -77,7 +77,7 @@ router.delete("/:id", (req, res) => {
 
 router.post("", (req, res) => {
 	let eboardServiceObj = new eboardService(req, res);
-	eboardServiceObj.addEboard();
+	eboardServiceObj.editEboard();
 });
 
 router.get("", (req, res) => {

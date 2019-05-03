@@ -114,12 +114,11 @@ class EboardService{
 	editEboard(){
 		let self = this;
 		let eboard = [];
-		eboard["imagePath"] = this.req.file.path;
-		eboard["description"] = this.req.body.description; 
-		eboard["position"] = this.req.body.position; 
-		eboard["name"] = this.req.body.name; 
-		eboard["order"] = this.req.body.order; 
-		console.log(eboard)
+		// eboard["imagePath"] = this.req.file.path;
+		eboard["description"] = this.req.body.eboard.description; 
+		eboard["position"] = this.req.body.eboard.position; 
+		eboard["name"] = this.req.body.eboard.name; 
+		eboard["order"] = this.req.body.eboard.order; 
 		try{
 			MongoClient.connect(url, {useNewUrlParser:true}, (err,client)=>{
 				var db = client.db('ClimbingClubDB')

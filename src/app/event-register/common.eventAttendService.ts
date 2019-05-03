@@ -11,7 +11,6 @@ export class CommonEventAttendService{
 	public eventAttend: EventAttendent[];
 	public add_subject = new Subject<String>()
 	constructor(private http:Http){
-		this.eventList = [];
 	}
 
 	addEvent(event){
@@ -44,6 +43,7 @@ export class CommonEventAttendService{
 	}
 
 	editEvent(event){
+		console.log(event)
 		return this.http.post('/api/Attendent', 
 		{"event":
 			{
