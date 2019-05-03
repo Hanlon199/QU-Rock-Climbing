@@ -45,15 +45,18 @@ export class PendingComponent implements OnInit {
       if (type =='member') {
   		  this.applicants[index]["isAdmin"] = false;
     		this.userService.addUser(this.applicants[index]).subscribe(res=>{this.userService.add_subject.next();});
-    		this.applicantService.removeApplicant(this.applicants[index]._id).subscribe(res=>{this.applicantService.add_subject.next();});
+    		this.applicantService.removeApplicant(this.applicants[index]._id).subscribe(res=>{this.applicantService.add_subject.next();
+          this.load();
+          this.loadingButton = false;
+          this.loadingButtonID = -1;
+        });
       }else{
-        this.authService.editAdmin(this.adminApps[index]).subscribe((res:any)=>{this.authService.add_subject.next();});
+        this.authService.editAdmin(this.adminApps[index]).subscribe((res:any)=>{this.authService.add_subject.next();
+    		  this.load();
+    		  this.loadingButton = false;
+      		this.loadingButtonID = -1;
+        });
       }
-      this.applicants = [];
-      this.adminApps = [];
-		  this.load();
-		  this.loadingButton = false;
-  		this.loadingButtonID = -1;
   	}
 
   	deny(index,type){

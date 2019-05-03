@@ -3,7 +3,7 @@
     <button class="btn btn-small btn-success" (click)="export()">Export Current to Excel <i
         class="fas fa-file-excel"></i></button>
 
-    <a href="/pending" class="btn btn-small btn-primary" >View Pending Applicants <span class="badge badge-danger ml-2" *ngIf="pendingAppCount != 0">{{pendingAppCount}}</span></a>
+    <a [routerLink]="['pending']" class="btn btn-small btn-primary" >View Pending Applicants <span class="badge badge-danger ml-2" *ngIf="pendingAppCount != 0">{{pendingAppCount}}</span></a>
   </div>
 
   <ngb-tabset>
