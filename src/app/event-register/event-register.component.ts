@@ -14,7 +14,7 @@ export class EventRegisterComponent implements OnInit {
 	private loading:boolean = true; 
 	private selected:any = []; 
 	private eventID:any; 
-	constructor(private activatedRoute: ActivatedRoute,private userService: CommonUserService,private eventAttendService: CommonEventAttendService) { }
+	constructor(private activatedRoute: ActivatedRoute,private userService: CommonUserService,private eventAttendService: CommonEventAttendService, public router: Router) { }
 
 	ngOnInit() {
 		 this.activatedRoute.params.subscribe(params => {
@@ -42,6 +42,7 @@ export class EventRegisterComponent implements OnInit {
 		this.eventAttendService.addEvent(this.selected).subscribe((res:any)=>{
 			
 		})
+		this.router.navigate(['/home'])
 	}
 
 

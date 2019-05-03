@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonApplicantService} from './common.applicantService';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-apply',
   templateUrl: './apply.component.html',
@@ -7,7 +9,7 @@ import {CommonApplicantService} from './common.applicantService';
 })
 export class ApplyComponent implements OnInit {
 	private applicant:any = []; 
-  	constructor(private applicantService:CommonApplicantService) { }
+  	constructor(private applicantService:CommonApplicantService, public router: Router) { }
 
   	ngOnInit() {
   	}
@@ -17,7 +19,9 @@ export class ApplyComponent implements OnInit {
   		this.applicantService.addApplicant(this.applicant).subscribe(res=>{
         this.applicantService.add_subject.next();
       });
-      this.applicant = [];
+			this.applicant = [];
+			
+			this.router.navigate(['/home'])
   	}
 
 
