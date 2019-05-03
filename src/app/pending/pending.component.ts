@@ -15,6 +15,7 @@ export class PendingComponent implements OnInit {
 	private loading:boolean = true;
 	private loadingButton:boolean = false;
 	private loadingButtonID:number = -1;
+  private hideRow:any = [];
   	constructor(private applicantService: CommonApplicantService, private userService: CommonUserService, private authService: CommonAuthService) { }
 
   	ngOnInit() {
@@ -42,19 +43,23 @@ export class PendingComponent implements OnInit {
   	approve(index,type){
   		this.loadingButton = true;
   		this.loadingButtonID = index;
+      this.hideRow[index] = true;
       if (type =='member') {
   		  this.applicants[index]["isAdmin"] = false;
-    		this.userService.addUser(this.applicants[index]).subscribe(res=>{this.userService.add_subject.next();});
-    		this.applicantService.removeApplicant(this.applicants[index]._id).subscribe(res=>{this.applicantService.add_subject.next();
-          this.load();
-          this.loadingButton = false;
-          this.loadingButtonID = -1;
+    		this.userService.addUser(this.applicants[index]).subscribe((res:any)=>{
+          this.userService.add_subject.next();
+      		this.applicantService.removeApplicant(this.applicants[index]._id).subscribe((res:any)=>{
+            this.loadingButton = false;
+            this.loadingButtonID = -1;
+            console.log("ABOUT TO RELOAD")
+            this.load();
+          });
         });
       }else{
         this.authService.editAdmin(this.adminApps[index]).subscribe((res:any)=>{this.authService.add_subject.next();
-    		  this.load();
     		  this.loadingButton = false;
       		this.loadingButtonID = -1;
+    		  this.load();
         });
       }
   	}
@@ -62,6 +67,8 @@ export class PendingComponent implements OnInit {
   	deny(index,type){
   		this.loadingButton = true;
   		this.loadingButtonID = index;
+      this.hideRow[index] = true;
+
       if (type =='member') {
   		  this.applicantService.removeApplicant(this.applicants[index]._id).subscribe(res=>{this.applicantService.add_subject.next();});
       }else{

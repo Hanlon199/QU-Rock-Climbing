@@ -12,7 +12,7 @@ export class CommonApplicantService{
 	public add_subject = new Subject<String>()
 	constructor(private http:Http){
 		// console.log(this.http)
-		this.applicantList = [];
+		// this.applicantList = [];
 	}
 
 	addApplicant(applicant){

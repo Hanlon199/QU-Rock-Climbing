@@ -75,7 +75,7 @@
 							</tr>
 						</thead>
 
-						<tr *ngFor="let app of adminApps; let id = index">
+						<tr (hidden)="hideRow[id]" *ngFor="let app of adminApps; let id = index">
 							<td style="font-size: 16px;">{{app.username}}</td>
 							<td>
 								<button class="btn btn-success btn-small" (click)="approve(id, 'admin')" style="width: 150px;">Approve <span *ngIf="loadingButton && loadingButtonID == id"><img height="25" width="25" src="src/app/includes/images/loadingSmall.gif"></span></button>
