@@ -11,6 +11,7 @@ class EventAttendentService{
 
 	insert(user, db, callback){
 		db.collection('eventAttendent').insertOne({
+			"_eventId": user._eventId,
 			"name": user.name,
 			"member" : user.member,
 			"belayCert" : user.belayCert,
